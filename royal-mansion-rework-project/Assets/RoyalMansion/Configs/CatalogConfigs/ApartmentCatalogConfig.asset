@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee617d93fcf86b740924167332c02ff1, type: 3}
+  m_Name: ApartmentCatalogConfig
+  m_EditorClassIdentifier: 
+  UnitType: 0
+  _catalogData:
+  - Section: 0
+    ApartmentArea: 1
+    Items:
+    - {fileID: 11400000, guid: b190012cf9f912f4cbe5da5cb39942c3, type: 2}
+  - Section: 1
+    ApartmentArea: 2
+    Items:
+    - {fileID: 11400000, guid: 6f924cf3fa2ed8a4f9a41c4745a312c2, type: 2}

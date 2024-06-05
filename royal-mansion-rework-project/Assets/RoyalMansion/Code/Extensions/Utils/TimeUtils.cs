@@ -1,0 +1,60 @@
+using RoyalMasion.Code.Infrastructure.Data;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace RoyalMansion.Code.Extensions.Utils
+{
+    public class TimeUtils
+    {
+    }
+    public struct TimerSpawnData
+    {
+        public Vector3 At { get; }
+        public Transform Parent { get; }
+
+        public TimerSpawnData(Vector3 at, Transform parent)
+        {
+            At = at;
+            Parent = parent;
+        }
+    }
+
+    [System.Serializable]
+    public struct NormalizedDateTime
+    {
+        public int Day;
+        public int Month;
+        public int Year;
+        public NormalizedTime Time;
+        //Converts a struct to parsable DateTime string 
+        public string ToDateTimeString()
+        {
+            return $"{Year}-{Month}-{Day}-{Time.ToDateTimeString()}";
+        }
+        public DateTime ToDateTime()
+        {
+            return DateTime.Parse(ToDateTimeString());
+        }
+    }
+    
+
+    [System.Serializable]
+    public struct NormalizedTime
+    {
+        public int Houres;
+        public int Minutes;
+        public int Seconds;
+        public float ToFloat()
+        {
+            return Seconds + Minutes * 60 + Houres * 60 * 60;
+        }
+        //Converts a struct to parsable DateTime string 
+        public string ToDateTimeString()
+        {
+            return $"{Houres}-{Minutes}-{Seconds}";
+        }
+
+    }
+}
