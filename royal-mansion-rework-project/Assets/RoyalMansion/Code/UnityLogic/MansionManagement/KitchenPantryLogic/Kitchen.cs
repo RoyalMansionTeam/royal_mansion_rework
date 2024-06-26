@@ -31,14 +31,12 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
         }
         private void Subscribe()
         {
-            UnitActionBtn.onClick.AddListener(HandleTouch);
             StateMashine.StateChanged += TrackKitchenLoop;
         }
 
 
         private void Unsubscribe()
         {
-            UnitActionBtn.onClick.RemoveListener(HandleTouch);
             StateMashine.StateChanged -= TrackKitchenLoop;
         }
         private void HandleTouch()
@@ -88,7 +86,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
 
         private void TrackKitchenLoop(IExitableMansionState state)
         {
-            Debug.Log(state.GetType());
             if (state.GetType() == typeof(CollectableState))
                 StartDelivery();
             else if (state.GetType() == typeof(EmptyState))

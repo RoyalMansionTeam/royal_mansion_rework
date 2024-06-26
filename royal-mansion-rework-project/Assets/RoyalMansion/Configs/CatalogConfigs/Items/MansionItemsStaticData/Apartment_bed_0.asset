@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Bed 1
   Price: 20
   PrefabAssetReference:
-    m_AssetGUID: 0a037678d57c981499f5b22d8c1b368c
+    m_AssetGUID: bd2a4cb3e3563704784abef5650f2d72
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

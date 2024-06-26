@@ -19,3 +19,53 @@ MonoBehaviour:
     Window: {fileID: 2137523066018518935, guid: e8275cab6d21149428968fdd0d7c0ae4, type: 3}
   - ID: 2
     Window: {fileID: 4090946368860875193, guid: cd096815352dbc34683f7e7016d4797e, type: 3}
+  _mansionStaticData:
+    UnitUIConfigs:
+    - UIState: 0
+      PrefabReference:
+        m_AssetGUID: 349f162d195f4694a9aaf9744f285cc6
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    - UIState: 1
+      PrefabReference:
+        m_AssetGUID: 1ca5c82e33318d846a0a9def6991d60b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - UIState: 2
+      PrefabReference:
+        m_AssetGUID: 29e4c1ba163917d469f71fcd7fb22c8d
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - UIState: 3
+      PrefabReference:
+        m_AssetGUID: 5f248c231616c7744b0b22411f6ee4f1
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - UIState: 4
+      PrefabReference:
+        m_AssetGUID: d46a87b1ead5ef446bfc09103323fefb
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - UIState: 5
+      PrefabReference:
+        m_AssetGUID: 6071f7ef384c26f468c1c6341503ef6d
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - UIState: 6
+      PrefabReference:
+        m_AssetGUID: 3af549c43adbbf0439d331a93ea13799
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 1
+    - UIState: 7
+      PrefabReference:
+        m_AssetGUID: 68cffbc88570e6f48bccf90fa1057d85
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0

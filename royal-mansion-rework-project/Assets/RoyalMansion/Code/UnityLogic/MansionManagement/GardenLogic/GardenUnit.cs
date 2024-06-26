@@ -15,27 +15,12 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
         private void OnEnable()
         {
             InitUnitData(_unitData);
-            StateMashine.Enter<LockedState, UnitStaticData>(null);
-            Subscribe();
+            EnterFirstState();
         }
 
         private void HandleAction()
         {
             StateMashine.Stay();
-        }
-        private void Subscribe()
-        {
-            UnitActionBtn.onClick.AddListener(HandleAction);
-        }
-        private void Unsubscribe()
-        {
-            UnitActionBtn.onClick.RemoveListener(HandleAction);
-        }
-
-
-        private void OnDestroy()
-        {
-            Unsubscribe();
         }
     }
 }

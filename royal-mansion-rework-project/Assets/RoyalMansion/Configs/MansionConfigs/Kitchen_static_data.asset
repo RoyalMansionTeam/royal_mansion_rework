@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae6a1e66cb8dd746b013ecbea375064, type: 3}
   m_Name: Kitchen_static_data
   m_EditorClassIdentifier: 
+  UnitID: kitchen_test
   _tasks:
   - State: 2
     Time:

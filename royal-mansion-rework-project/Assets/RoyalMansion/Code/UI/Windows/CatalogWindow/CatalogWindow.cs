@@ -4,6 +4,8 @@ using RoyalMasion.Code.Infrastructure.Services.AssetProvider;
 using RoyalMasion.Code.Infrastructure.Services.ProjectData;
 using RoyalMasion.Code.UI.Windows;
 using RoyalMasion.Code.UnityLogic.MasionManagement;
+using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,10 +44,10 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         private GameObject _itemPrefab;
         private CatalogSection _currentSection;
         private Transform _newItemSpawnPoint;
-
         private GameObject _objectInPlacing;
         private CatalogItemStaticData _objectInPlacingData;
-
+        private string _unitID;
+        private Action<CatalogSection> _unitOnBuyEvent;
 
         [Inject]
         public void Construct(IAssetProvider assetProvider, IMansionFactory mansionFactory,
@@ -88,9 +90,12 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
             _itemPrefab = await _assetProvider.Load<GameObject>(_itemReference);
         }
 
-        public async void SetUnitType(UnitType targetType, Transform spawnPoint)
+        public async void SetUnitType(UnitType targetType, Transform spawnPoint, 
+            string unitID, Action<CatalogSection> unitOnBuyEvent)
         {
             _newItemSpawnPoint = spawnPoint;
+            _unitID = unitID;
+            _unitOnBuyEvent = unitOnBuyEvent;
             switch (targetType)
             {
                 case UnitType.Apartment:
@@ -173,17 +178,26 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
             if (!AbleToPurchase(itemData.Price))
                 return;
             _objectInPlacingData = itemData;
-            _objectInPlacing = await _mansionFactory.CreateUnitObject(reference: itemData.PrefabAssetReference,
-                at: _newItemSpawnPoint.position,
-                parent: _newItemSpawnPoint);
-            _objectInPlacing.transform.localScale = Vector3.one;
+            await SpawnObject(itemData);
             SwitchToPlacementUI();
         }
 
+        private async Task SpawnObject(CatalogItemStaticData itemData)
+        {
+            _objectInPlacing = await _mansionFactory.CreateUnitObject(
+                            reference: itemData.PrefabAssetReference.AssetGUID,
+                            at: _newItemSpawnPoint.position,
+                            parent: _newItemSpawnPoint);
+            _objectInPlacing.transform.localScale = Vector3.one;
+            _objectInPlacing.GetComponent<UnitItem>().SetItemData(
+                unitID: _unitID,
+                assetReference: itemData.PrefabAssetReference.AssetGUID);
+        }
 
         private bool AbleToPurchase(int price)
         {
-            return _economyService.GetEconomyData(ResourceType.SoftVallue) >= price;
+            return true;
+            //return _economyService.GetEconomyData(ResourceType.SoftVallue) >= price;
         }
 
         private void CancelPlacement()
@@ -196,6 +210,7 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         {
             Destroy(_objectInPlacing.GetComponent<DragAndDrop>());
             _economyService.SetEconomyData(ResourceType.SoftVallue, -_objectInPlacingData.Price);
+            _unitOnBuyEvent?.Invoke(_currentSection);
             SwitchToCatalogUI();
         }
         private void SwitchToPlacementUI()

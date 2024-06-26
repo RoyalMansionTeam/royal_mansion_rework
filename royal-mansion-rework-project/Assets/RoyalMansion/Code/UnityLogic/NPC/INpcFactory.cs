@@ -1,11 +1,12 @@
 ﻿using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
+using System.Threading.Tasks;
 
 namespace RoyalMansion.Code.UnityLogic.NPC
 {
     public interface INpcFactory
     {
         TNpc SpawnNpc<TNpc>() where TNpc : NpcBase;
-        void SetNpcFactory();
+        Task SetNpcFactory();
         void Clear();
     }
 }

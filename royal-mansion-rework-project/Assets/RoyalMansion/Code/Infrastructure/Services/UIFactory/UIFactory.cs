@@ -24,7 +24,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.UIFactory
         {
             if (_uiRoot != null)
                 Object.Destroy(_uiRoot.gameObject);
-            Debug.Log("TryLoadWindowData");
             WindowConfig config = _staticDataService.GetWindow(WindowID.UiRoot);
             GameObject uiRoot = _objectResolver.Instantiate(config.Window);
             _uiRoot = uiRoot.transform;

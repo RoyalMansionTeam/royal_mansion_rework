@@ -1,10 +1,5 @@
 namespace RoyalMasion.Code.Infrastructure.Data
 {
-    public enum MansionTaskType
-    {
-        Collect = 0,
-        Clean = 1,
-    }
     public enum UnitState
     {
         Locked = 0,
@@ -13,6 +8,18 @@ namespace RoyalMasion.Code.Infrastructure.Data
         Collectable = 3,
         Dirty = 4,
     }
+    public enum InternalUnitStates
+    {
+        Locked = 0,
+        Unlockable = 1,
+        AwaitingFurniture = 2,
+        AwaitingGuests = 3,
+        ApartmentStayTimer = 4,
+        Collectable = 5,
+        AwaitingCleaning = 6,
+        CleaningTimer = 7
+    }
+
 
     public enum UnitType
     {

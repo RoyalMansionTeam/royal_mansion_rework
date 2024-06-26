@@ -10,6 +10,6 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
     [Serializable]
     public class MansionStaticData
     {
-
+        [SerializeField] public UnitUIConfig[] UnitUIConfigs;
     }
 }
