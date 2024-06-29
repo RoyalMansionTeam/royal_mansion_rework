@@ -628,6 +628,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf42620e45cb5084ebf8739f9411d10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2050656750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2050656751}
+  - component: {fileID: 2050656753}
+  - component: {fileID: 2050656752}
+  m_Layer: 5
+  m_Name: GuestDespawnTriggerZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2050656751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050656750}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.93, y: 0, z: -3.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9220363105402506498}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2050656752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050656750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0858ff4aaee3c4ca2aa3ccca5c4bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2050656753
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050656750}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9275491, y: 1, z: 1.9356351}
+  m_Center: {x: 0.06159413, y: 0, z: 0.13138652}
 --- !u!1 &165282414416018574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,9 +1472,8 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects:
-  - {fileID: 0}
-  - {fileID: 979738697692348376}
   - {fileID: 4935613678517811797}
+  - {fileID: 979738697692348376}
   - {fileID: 3991865072710449423}
 --- !u!1 &8938806458766006935
 GameObject:
@@ -1463,6 +1528,7 @@ Transform:
   - {fileID: 3490597977461735290}
   - {fileID: 4000246950303316956}
   - {fileID: 5692268247346984236}
+  - {fileID: 2050656751}
   - {fileID: 1690006082833294170}
   - {fileID: 992771531523775424}
   m_Father: {fileID: 0}

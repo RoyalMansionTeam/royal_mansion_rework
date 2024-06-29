@@ -23,15 +23,5 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             SpawnUI();
             UnitAchived?.Invoke();
         }
-        public void EndStaySequence()
-        {
-            //поменять цель на зону деспавна
-            Despawn();
-        }
-
-        private void Despawn()
-        {
-            Destroy(gameObject);
-        }
     }
 }

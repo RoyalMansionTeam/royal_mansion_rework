@@ -60,6 +60,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
         }
 
 
+
         protected void EnterFirstState()
         {
             switch (StartState)
@@ -91,6 +92,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
 
         public void NpcEnteredUnitEvent()
         {
+            if (StateMashine.NPC == null)
+                return;
             StateMashine.NPC.OnUnitAchieved();
         }
 
@@ -107,7 +110,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
                     navMeshTarget: _navmeshTarget,
                     unitUIHandler: _uiHandler,
                     itemBoughtEvent: ItemBoughtEvent,
-                    npcSaveData: _npcSaveData
+                    npcSaveData: _npcSaveData,
+                    basicRequirementsMetState: BasicUnitRequirementsMet
                 );
             StateMashine = new MansionStateMachine.MansionStateMachine(_stateMashineData);
         }
@@ -129,7 +133,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
             {
                 if (npcSaveData.AssignedUnitID != UnitData.UnitID)
                     continue;
-                Debug.Log("Load");
                 _npcSaveData = npcSaveData;
             }
             foreach (MansionUnitSaveData unitData in progress.MansionProgress.MansionUnitsSave)
@@ -156,15 +159,20 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
                                 reference: catalogItem.AssetGUID,
                                 at: catalogItem.Position.AsUnityVector(),
                                 parent: _itemsParent);
+            CatalogSection instanceSection = (CatalogSection)catalogItem.CatalogSectionID;
             instance.transform.localScale = Vector3.one;
             instance.GetComponent<UnitItem>().SaveableID = catalogItem.UniqueSaveID;
-            instance.GetComponent<UnitItem>().SetItemData(catalogItem.AssignedUnitID, catalogItem.AssetGUID);
+            instance.GetComponent<UnitItem>().SetItemData(
+                catalogItem.AssignedUnitID, 
+                catalogItem.AssetGUID,
+                instanceSection);
+            ItemBoughtEvent?.Invoke(instanceSection);
             Destroy(instance.GetComponent<DragAndDrop>());
         }
 
         private void RegisterSaveableEntity()
         {
-            _mansionFactory.RegisterSaveableEntity(this);
+            _mansionFactory.RegisterSaveableEntity((ISaveReader)this);
         }
 
         public void SaveProgress(GameProgress progress)

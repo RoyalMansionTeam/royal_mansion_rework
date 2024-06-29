@@ -24,7 +24,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
         {
             Subscribe();
             InitUnitData(_unitData);
-            //EnterFirstState();
             SetBasicUnitRequirements();
         }
 
@@ -49,7 +48,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
             _basicRequirements = UnitData.BasicRequirements;
             if (_basicRequirements.Length == 0)
                 return;
-            foreach (UnitFurnitureRequirements requiredItem in _basicRequirements) //TODO: Chech for saved items
+            foreach (UnitFurnitureRequirements requiredItem in _basicRequirements)
                 requiredItem.Amount = 0;
             BasicUnitRequirementsMet = false;
         }
@@ -61,10 +60,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
             {
                 if (requiredItem.ItemType != itemSection)
                     continue;
-                requiredItem.Amount +=1;
+                requiredItem.Amount += 1;
                 break;
             }
-            BasicUnitRequirementsMet = CheckRequirements();
+            BasicUnitRequirementsMet = _stateMashineData.BasicRequirementsMetState = CheckRequirements();
             if (BasicUnitRequirementsMet)
                 _stateMashineData.BasicRequirementsMet?.Invoke();
         }

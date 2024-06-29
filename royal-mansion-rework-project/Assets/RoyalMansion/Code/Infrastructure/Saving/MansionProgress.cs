@@ -70,7 +70,20 @@ namespace RoyalMasion.Code.Infrastructure.Saving
             }
             TimerSaveData.Add(targetTimer);
         }
-
+        public void TryRemoveTimer(string uniqueID)
+        {
+            if (TimerSaveData == null)
+                return;
+            for (int i = 0; i < TimerSaveData.Count; i++)
+            {
+                TimerSaveData timerData = TimerSaveData[i];
+                if (timerData.UniqueSaveID == uniqueID)
+                {
+                    TimerSaveData.Remove(timerData);
+                    return;
+                }
+            }
+        }
         public void TryAddNpc(NpcSaveData npc)
         {
             if (NpcSaveData == null)
@@ -79,7 +92,7 @@ namespace RoyalMasion.Code.Infrastructure.Saving
                 NpcSaveData.Add(npc);
                 return;
             }
-            for (int i = 0; i < CatalogItemsSave.Count; i++)
+            for (int i = 0; i < NpcSaveData.Count; i++)
             {
                 NpcSaveData npcData = NpcSaveData[i];
                 if (npcData.UniqueSaveID == npc.UniqueSaveID)
@@ -94,7 +107,7 @@ namespace RoyalMasion.Code.Infrastructure.Saving
         {
             if (NpcSaveData == null)
                 return;
-            for (int i = 0; i < CatalogItemsSave.Count; i++)
+            for (int i = 0; i < NpcSaveData.Count; i++)
             {
                 NpcSaveData npcData = NpcSaveData[i];
                 if (npcData.UniqueSaveID == uniqueID)

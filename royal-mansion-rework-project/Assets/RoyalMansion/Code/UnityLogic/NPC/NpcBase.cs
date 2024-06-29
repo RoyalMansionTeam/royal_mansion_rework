@@ -10,15 +10,21 @@ using UnityEngine.AI;
 namespace RoyalMansion.Code.UnityLogic.NPC
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class NpcBase : MonoBehaviour, ISaveWriter, ISaveReader
+    public class NpcBase : MonoBehaviour, ISaveWriter
     {
         public string SaveableID { get; set; }
         public string AssignedUnitID;
+        public bool FinishedTask = false;
 
         [SerializeField] protected NavMeshAgent _agent;
 
         private INpcBehaviour _currentBehavior;
         private GameProgress _progress;
+
+        public void SetProgress(IPersistentProgressService progressService)
+        {
+            _progress = progressService.Progress;
+        }
 
         public void SpawnUI()
         {
@@ -39,6 +45,8 @@ namespace RoyalMansion.Code.UnityLogic.NPC
 
         public void SaveProgress(GameProgress progress)
         {
+            if (this == null)
+                return;
             _progress = progress;
             progress.MansionProgress.TryAddNpc(new NpcSaveData(
                 uniqueSaveID: SaveableID,
@@ -47,15 +55,11 @@ namespace RoyalMansion.Code.UnityLogic.NPC
                 ));
         }
 
-        private void OnDestroy()
+        public void Despawn()
         {
-            if (_progress == null)
-                return;
-            _progress.MansionProgress.TryRemoveNpc(SaveableID);
-        }
-
-        public void LoadProgress(GameProgress progress)
-        {
+            if (_progress != null)
+                _progress.MansionProgress.TryRemoveNpc(SaveableID);
+            Destroy(gameObject);
         }
     }
 }

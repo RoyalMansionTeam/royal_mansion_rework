@@ -191,13 +191,13 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
             _objectInPlacing.transform.localScale = Vector3.one;
             _objectInPlacing.GetComponent<UnitItem>().SetItemData(
                 unitID: _unitID,
-                assetReference: itemData.PrefabAssetReference.AssetGUID);
+                assetReference: itemData.PrefabAssetReference.AssetGUID,
+                itemSection: _currentSection);
         }
 
         private bool AbleToPurchase(int price)
         {
-            return true;
-            //return _economyService.GetEconomyData(ResourceType.SoftVallue) >= price;
+            return _economyService.GetEconomyData(ResourceType.SoftVallue) >= price;
         }
 
         private void CancelPlacement()

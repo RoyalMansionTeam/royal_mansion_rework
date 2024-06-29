@@ -27,7 +27,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             _mansionStateMachine.LastTask = stateRewardData.State;
             if (_stateMachineData.UnitData.UnitType == UnitType.Apartment)
                 SetApartmentUI();
-            if (_stateMachineData.NpcSaveData != null)
+            if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
         }
         public void Stay()
@@ -70,6 +70,9 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private void SetNpcDestination()
         {
             _mansionStateMachine.NPC.SetNPC(_stateMachineData.SceneContext.MansionSpawnPoints.GuestSpawnPoint);
+            _mansionStateMachine.NPC.FinishedTask = true;
+            _stateMachineData.NpcSaveData = null;
+            _mansionStateMachine.NPC = null;
         }
     }
 }

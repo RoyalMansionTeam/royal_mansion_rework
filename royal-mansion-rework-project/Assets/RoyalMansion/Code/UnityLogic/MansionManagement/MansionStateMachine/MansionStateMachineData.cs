@@ -24,13 +24,14 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine
         public Transform NavMeshTarget { get; }
         public Action<CatalogSection> ItemBoughtEvent { get; }
         public Action BasicRequirementsMet { get; set; }
-        public NpcSaveData NpcSaveData { get; }
+        public NpcSaveData NpcSaveData { get; set; }
+        public bool BasicRequirementsMetState { get; set; }
 
         public MansionStateMachineData(IEconomyDataService economyDataService,
             INpcFactory npcFactory, UnitStaticData unitStaticData,
             ISceneContextService sceneContext, IUIFactory uiFactory, Transform itemSpawnPoint,
             Transform navMeshTarget, MansionUnitUIHandler unitUIHandler,
-            Action<CatalogSection> itemBoughtEvent, NpcSaveData npcSaveData)
+            Action<CatalogSection> itemBoughtEvent, NpcSaveData npcSaveData, bool basicRequirementsMetState)
         {
             EconomyData = economyDataService;
             NpcFactory = npcFactory;
@@ -42,6 +43,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine
             UnitUIHandler = unitUIHandler;
             ItemBoughtEvent = itemBoughtEvent;
             NpcSaveData = npcSaveData;
+            BasicRequirementsMetState = basicRequirementsMetState;
         }
 
     }

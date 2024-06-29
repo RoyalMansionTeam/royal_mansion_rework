@@ -23,11 +23,13 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         public void Enter()
         {
-            SetEmptyApartmentUI();
-            _staticData.BasicRequirementsMet += OnUnitBasicRequirementsMet;
-            if (_staticData.NpcSaveData != null)
-                SpawnNPC(_staticData.NpcSaveData);
+            if (_staticData.BasicRequirementsMetState)
+                OnUnitBasicRequirementsMet();
+            else
+                SetEmptyApartmentUnit();
         }
+
+
         public void Stay()
         {
             if (_staticData.UnitData.UnitType != UnitType.Apartment &
@@ -45,13 +47,21 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             /*if (_staticData.UnitData.UnitType == UnitType.Apartment)
                 _staticData.SceneContext.Kitchen.AddToOrderList(_npc);*/
         }
+        private void SetEmptyApartmentUnit()
+        {
+            SetEmptyApartmentUI();
+            _staticData.BasicRequirementsMet += OnUnitBasicRequirementsMet;
+        }
 
         private void OnUnitBasicRequirementsMet()
         {
             if (_staticData.UnitData.UnitType == UnitType.Apartment)
             {
                 SetFurnituredApartmentUI();
-                if (_mansionStateMachine.NPC == null)
+
+                if (_staticData.NpcSaveData != null)
+                    SpawnNPC(_staticData.NpcSaveData);
+                else
                     SpawnNPC();
             }
         }

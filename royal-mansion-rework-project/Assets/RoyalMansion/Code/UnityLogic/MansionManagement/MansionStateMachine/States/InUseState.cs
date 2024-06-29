@@ -33,8 +33,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 (_mansionStateMachine.GetUnitStateEnum(GetType()));
             SpawnTimer();
 
-            Debug.Log(_stateMachineData.NpcSaveData);
-            if (_stateMachineData.NpcSaveData!=null)
+            if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
         }
 
@@ -45,8 +44,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         public void Exit()
         {
             _timer.Despawn();
-            if (_stateMachineData.UnitData.UnitType == UnitType.Apartment)
-                EndNPCStay();
         }
 
         private void SpawnNPC(NpcSaveData saveData)
@@ -57,12 +54,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             _npc.SetNPC(_npc.gameObject.transform);
             _npc.AssignedUnitID = _stateMachineData.UnitData.UnitID;
             _mansionStateMachine.NPC = _npc;
-        }
-
-        private void EndNPCStay()
-        {
-            /*_mansionStateMachine.NPC.EndStaySequence();
-            _mansionStateMachine.NPC = null;*/
         }
 
         private async void SpawnTimer()
