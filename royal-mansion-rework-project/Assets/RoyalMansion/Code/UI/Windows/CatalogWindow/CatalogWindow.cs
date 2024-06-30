@@ -1,7 +1,9 @@
+using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.Catalog;
 using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.Infrastructure.Services.AssetProvider;
 using RoyalMasion.Code.Infrastructure.Services.ProjectData;
+using RoyalMasion.Code.Infrastructure.Services.SceneContext;
 using RoyalMasion.Code.UI.Windows;
 using RoyalMasion.Code.UnityLogic.MasionManagement;
 using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
@@ -36,26 +38,30 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         private IAssetProvider _assetProvider;
         private IMansionFactory _mansionFactory;
         private IEconomyDataService _economyService;
+        private ISceneContextService _sceneContext;
 
         private Dictionary<CatalogSection, List<CatalogItemStaticData>> _catalogData;
         private Dictionary<CatalogSection, List<CatalogItemStaticData>> _mainCatalogData;
         private Dictionary<CatalogSection, List<CatalogItemStaticData>> _extraCatalogData;
         private GameObject _sectionPrefab;
         private GameObject _itemPrefab;
+        private ApartmentAreaType _currentApartmentArea;
         private CatalogSection _currentSection;
         private Transform _newItemSpawnPoint;
         private GameObject _objectInPlacing;
         private CatalogItemStaticData _objectInPlacingData;
         private string _unitID;
         private Action<CatalogSection> _unitOnBuyEvent;
+        private List<UnitVirtualCamera> _virtualCameras;
 
         [Inject]
         public void Construct(IAssetProvider assetProvider, IMansionFactory mansionFactory,
-            IEconomyDataService economyService)
+            IEconomyDataService economyService, ISceneContextService sceneContext)
         {
             _assetProvider = assetProvider;
             _mansionFactory = mansionFactory;
             _economyService = economyService;
+            _sceneContext = sceneContext;
         }
 
         private void Start()
@@ -91,11 +97,13 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         }
 
         public async void SetUnitType(UnitType targetType, Transform spawnPoint, 
-            string unitID, Action<CatalogSection> unitOnBuyEvent)
+            string unitID, Action<CatalogSection> unitOnBuyEvent, List<UnitVirtualCamera> virtualCameras)
         {
             _newItemSpawnPoint = spawnPoint;
             _unitID = unitID;
             _unitOnBuyEvent = unitOnBuyEvent;
+            _virtualCameras = virtualCameras;
+            _currentApartmentArea = ApartmentAreaType.Bedroom;
             switch (targetType)
             {
                 case UnitType.Apartment:
@@ -117,6 +125,7 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
             await LoadAssets();
             SetSections();
             _currentSection = CatalogSection.None;
+            SetCamera();
             SwitchSection(_catalogData.First().Key);
         }
 
@@ -134,7 +143,9 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
                     break;
             }
             SetSections();
+            _currentApartmentArea = targetArea;
             _currentSection = CatalogSection.None;
+            SetCamera();
             SwitchSection(_catalogData.First().Key);
         }
 
@@ -164,6 +175,25 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
 
             _currentSection = newSection;
         }
+
+        private void SetCamera()
+        {
+            if (_virtualCameras.Count == 0)
+                return;
+            UnitVirtualCamera targetCamera = new();
+            if (_virtualCameras.Count == 1)
+                targetCamera = _virtualCameras[0];
+            foreach (UnitVirtualCamera camData in _virtualCameras)
+            {
+                if (camData.ApartmentAreaType != _currentApartmentArea)
+                    continue;
+                targetCamera = camData;
+            }
+            _sceneContext.CinemachineHandler.SetCameraTo(
+                    targetCamera.VirtualCamera,
+                    targetCamera.IgnoredLayers);
+        }
+
         private void AddItemUI(CatalogItemStaticData itemData)
         {
             CatalogItemUI item = Instantiate(_itemPrefab, _itemsLayoutGroup).
@@ -226,6 +256,7 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
 
         private void OnDestroy()
         {
+            _sceneContext.CinemachineHandler.ResetCamera();
             Unsubscribe();
         }
 

@@ -1,4 +1,5 @@
-﻿using RoyalMansion.Code.UnityLogic.ContextObjects.MansionContext;
+﻿using RoyalMansion.Code.UnityLogic.CameraLogic;
+using RoyalMansion.Code.UnityLogic.ContextObjects.MansionContext;
 using RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic;
 using System;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         private ISceneContextService _contextService;
         [SerializeField] private MansionSpawnPointData _mansionSpawnPoints;
         [SerializeField] private Kitchen _kitchen;
+        [SerializeField] private MansionCinemachineHandler _cinemachineHandler;
 
         [Inject]
         public void Construct(ISceneContextService contextService)
@@ -23,6 +25,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         {
             _contextService.MansionSpawnPoints = _mansionSpawnPoints;
             _contextService.Kitchen = _kitchen;
+            _contextService.CinemachineHandler = _cinemachineHandler;
         }
     }
 }

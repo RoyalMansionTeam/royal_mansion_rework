@@ -1,3 +1,4 @@
+using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.ContextObjects.MansionContext;
 using RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic;
 using System;
@@ -9,5 +10,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
     {
         public MansionSpawnPointData MansionSpawnPoints { get; set; }
         public Kitchen Kitchen { get; set; }
+        public MansionCinemachineHandler CinemachineHandler { get; set; }
     }
 }

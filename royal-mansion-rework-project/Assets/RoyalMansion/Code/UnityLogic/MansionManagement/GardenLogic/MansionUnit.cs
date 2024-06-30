@@ -19,6 +19,7 @@ using RoyalMansion.Code.UnityLogic.Catalog;
 using System.Threading.Tasks;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.States;
 using RoyalMansion.Code.UI.WorldspaceUI;
+using RoyalMansion.Code.UnityLogic.CameraLogic;
 
 namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
 {
@@ -38,6 +39,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
         [SerializeField] private Transform _newItemSpawnPoint;
         [SerializeField] private Transform _itemsParent;
         [SerializeField] private Transform _navmeshTarget;
+        [SerializeField] private UnitVirtualCamerasData _unitCameras;
 
         private ISceneContextService _sceneContext;
         private IUIFactory _uiFactory;
@@ -111,8 +113,9 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
                     unitUIHandler: _uiHandler,
                     itemBoughtEvent: ItemBoughtEvent,
                     npcSaveData: _npcSaveData,
-                    basicRequirementsMetState: BasicUnitRequirementsMet
-                );
+                    basicRequirementsMetState: BasicUnitRequirementsMet,
+                    virtialCameraData: _unitCameras.VirtialCameras
+                ) ;
             StateMashine = new MansionStateMachine.MansionStateMachine(_stateMashineData);
         }
         public void LoadProgress(GameProgress progress)

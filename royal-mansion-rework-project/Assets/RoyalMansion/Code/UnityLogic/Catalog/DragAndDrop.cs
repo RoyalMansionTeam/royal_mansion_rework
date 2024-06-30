@@ -59,7 +59,8 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
 
         private void OnDrag()
         {
-            _rb.MovePosition(Vector2.Lerp(transform.position, new Vector2(_worldPosition.x, _worldPosition.y), _dragSpeed * Time.deltaTime));
+            _rb.MovePosition(Vector2.Lerp(transform.position, 
+                new Vector2(_worldPosition.x, _worldPosition.y), _dragSpeed * Time.deltaTime));
         }
 
         private void OnDrop()

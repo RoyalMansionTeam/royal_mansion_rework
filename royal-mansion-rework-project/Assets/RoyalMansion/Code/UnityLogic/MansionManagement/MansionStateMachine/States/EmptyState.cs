@@ -40,7 +40,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 targetType: _staticData.UnitData.UnitType,
                 spawnPoint: _staticData.ItemSpawnPoint,
                 unitID: _staticData.UnitData.UnitID,
-                unitOnBuyEvent: _staticData.ItemBoughtEvent);
+                unitOnBuyEvent: _staticData.ItemBoughtEvent,
+                virtualCameras: _staticData.VirtialCameraData);
         }
         public void Exit()
         {

@@ -9,6 +9,8 @@ using RoyalMansion.Code.UI.WorldspaceUI;
 using RoyalMasion.Code.Infrastructure.Data;
 using System;
 using RoyalMasion.Code.Infrastructure.Saving;
+using RoyalMansion.Code.UnityLogic.CameraLogic;
+using System.Collections.Generic;
 
 namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine
 {
@@ -26,12 +28,14 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine
         public Action BasicRequirementsMet { get; set; }
         public NpcSaveData NpcSaveData { get; set; }
         public bool BasicRequirementsMetState { get; set; }
+        public List<UnitVirtualCamera> VirtialCameraData { get; }
 
         public MansionStateMachineData(IEconomyDataService economyDataService,
             INpcFactory npcFactory, UnitStaticData unitStaticData,
             ISceneContextService sceneContext, IUIFactory uiFactory, Transform itemSpawnPoint,
             Transform navMeshTarget, MansionUnitUIHandler unitUIHandler,
-            Action<CatalogSection> itemBoughtEvent, NpcSaveData npcSaveData, bool basicRequirementsMetState)
+            Action<CatalogSection> itemBoughtEvent, NpcSaveData npcSaveData, bool basicRequirementsMetState, 
+            List<UnitVirtualCamera> virtialCameraData)
         {
             EconomyData = economyDataService;
             NpcFactory = npcFactory;
@@ -44,6 +48,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine
             ItemBoughtEvent = itemBoughtEvent;
             NpcSaveData = npcSaveData;
             BasicRequirementsMetState = basicRequirementsMetState;
+            VirtialCameraData = virtialCameraData;
         }
 
     }
