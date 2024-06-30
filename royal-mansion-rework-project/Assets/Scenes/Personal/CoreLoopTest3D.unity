@@ -148,14 +148,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309942061}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.67559016, y: -0, z: -0, w: 0.7372774}
-  m_LocalPosition: {x: 0, y: 13.7, z: -3.4}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 13.7, z: -1.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 793090496}
   m_Father: {fileID: 2649884816066643933}
-  m_LocalEulerAnglesHint: {x: 85, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &309942063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.5
     FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
@@ -468,10 +468,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a86f1fe4473f84897fc10d9bb61437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dragableCameraInternalSettings:
-    area:
-      m_Center: {x: -0.07, y: 6.99, z: -11.14}
-      m_Extent: {x: 4, y: 4, z: 4}
+  _draggableArea:
+    m_Center: {x: -0.07, y: 6.99, z: -11.14}
+    m_Extent: {x: 4, y: 4, z: 4}
   dragSpeed: 0.1
 --- !u!1 &753611445
 GameObject:

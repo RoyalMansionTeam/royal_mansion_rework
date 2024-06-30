@@ -37,7 +37,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
 
         [SerializeField] private MansionUnitUIHandler _uiHandler;
         [SerializeField] private Transform _newItemSpawnPoint;
-        [SerializeField] private Transform _itemsParent;
         [SerializeField] private Transform _navmeshTarget;
         [SerializeField] private UnitVirtualCamerasData _unitCameras;
 
@@ -161,9 +160,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
             GameObject instance = await _mansionFactory.CreateUnitObject(
                                 reference: catalogItem.AssetGUID,
                                 at: catalogItem.Position.AsUnityVector(),
-                                parent: _itemsParent);
+                                parent: _newItemSpawnPoint);
             CatalogSection instanceSection = (CatalogSection)catalogItem.CatalogSectionID;
             instance.transform.localScale = Vector3.one;
+            instance.transform.rotation *= Quaternion.Euler(catalogItem.Rotation.AsUnityVector());
             instance.GetComponent<UnitItem>().SaveableID = catalogItem.UniqueSaveID;
             instance.GetComponent<UnitItem>().SetItemData(
                 catalogItem.AssignedUnitID, 

@@ -32,6 +32,7 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
 
         [SerializeField] private Button _placementCancel;
         [SerializeField] private Button _placementApply;
+        [SerializeField] private Button _placementRotate;
 
         [SerializeField] private List<CatalogAreaUI> _areaSwitchers;
 
@@ -74,11 +75,13 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         {
             _placementCancel.onClick.AddListener(CancelPlacement);
             _placementApply.onClick.AddListener(ApplylPlacement);
+            _placementRotate.onClick.AddListener(RotatePlacement);
             if (_areaSwitchers.Count == 0)
                 return;
             foreach (CatalogAreaUI handler in _areaSwitchers)
                 handler.PickArea += SwitchArea;
         }
+
 
         private void Unsubscribe()
         {
@@ -228,6 +231,11 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         private bool AbleToPurchase(int price)
         {
             return _economyService.GetEconomyData(ResourceType.SoftVallue) >= price;
+        }
+        private void RotatePlacement()
+        {
+            if (_objectInPlacing.TryGetComponent(out UnitItem itemHandler))
+                itemHandler.Rotate();
         }
 
         private void CancelPlacement()

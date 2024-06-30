@@ -10,6 +10,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionTriggers
     {
         private void OnTriggerEnter(Collider other)
         {
+            if (other.gameObject.transform.parent == null)
+                return;
             if (other.gameObject.transform.parent.TryGetComponent(out NpcBase npc))
             {
                 if (npc.FinishedTask)

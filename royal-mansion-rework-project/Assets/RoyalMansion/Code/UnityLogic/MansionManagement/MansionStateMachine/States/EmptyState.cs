@@ -35,7 +35,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             if (_staticData.UnitData.UnitType != UnitType.Apartment &
                 _staticData.UnitData.UnitType != UnitType.Garden)
                 return;
-            GameObject catalog = _staticData.UiFactory.CreateWindow(WindowID.Catalog);
+            GameObject catalog = _staticData.UiFactory.CreateWindow(WindowID.Catalog, true);
             catalog.GetComponent<CatalogWindow>().SetUnitType(
                 targetType: _staticData.UnitData.UnitType,
                 spawnPoint: _staticData.ItemSpawnPoint,

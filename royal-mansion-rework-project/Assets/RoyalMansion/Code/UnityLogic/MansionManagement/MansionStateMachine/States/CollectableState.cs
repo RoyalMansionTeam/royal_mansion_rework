@@ -69,6 +69,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
 
         private void SetNpcDestination()
         {
+            if (_mansionStateMachine.NPC == null)
+                return;
             _mansionStateMachine.NPC.SetNPC(_stateMachineData.SceneContext.MansionSpawnPoints.GuestSpawnPoint);
             _mansionStateMachine.NPC.FinishedTask = true;
             _stateMachineData.NpcSaveData = null;

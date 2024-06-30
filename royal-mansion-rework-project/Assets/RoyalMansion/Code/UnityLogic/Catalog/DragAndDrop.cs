@@ -6,20 +6,29 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
 {
     public class DragAndDrop : MonoBehaviour
     {
-        [SerializeField] private float _dragSpeed = 0.1f;
-        private bool _isInDrag;
-        private Vector2 _screenPosition;
+        [SerializeField] private float _dragSpeed = 15f;
+
+        Camera _targetCam;
+        private Rigidbody _rb;
+        private Vector3 _screenPosition;
         private Vector3 _worldPosition;
-        private Rigidbody2D _rb;
+        private Plane _plane;
+        private Ray _ray;
+        private bool _isInDrag;
+        private float _screenToCameraDistance;
+        private float _rayEnter;
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody>();
+            _targetCam = Camera.main;
             _isInDrag = false;
+            _screenToCameraDistance = _targetCam.nearClipPlane;
+            _plane = new Plane(Vector3.up, Vector3.zero);
         }
         private void Update()
         {
-            if (_isInDrag && (Input.GetMouseButtonUp(0) || 
+            if (_isInDrag && (Input.GetMouseButtonUp(0) ||
                 (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
             {
                 OnDrop();
@@ -29,14 +38,16 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
             if (Input.GetMouseButton(0))
             {
                 Vector3 mousePos = Input.mousePosition;
-                _screenPosition = new Vector2(mousePos.x, mousePos.y);
+                _screenPosition = new Vector3(mousePos.x, mousePos.y, _screenToCameraDistance);
             }
             else if (Input.touchCount > 0)
                 _screenPosition = Input.GetTouch(0).position;
             else
                 return;
 
-            _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
+            _ray = Camera.main.ScreenPointToRay(_screenPosition);
+            if (_plane.Raycast(_ray, out _rayEnter))
+                _worldPosition = _ray.GetPoint(_rayEnter);
 
             if (_isInDrag)
             {
@@ -44,11 +55,11 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
                 return;
             }
 
-            RaycastHit2D hit = Physics2D.Raycast(_worldPosition, Vector2.zero);
-            if (hit.collider == null)
-                return;
-            if (hit.transform.gameObject == gameObject)
-                OnStartDrag();
+            if (Physics.Raycast(_ray.origin, _ray.direction * 100f, out RaycastHit hit))
+            {
+                if (hit.transform.gameObject == gameObject)
+                    OnStartDrag();
+            }
 
         }
 
@@ -59,8 +70,9 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
 
         private void OnDrag()
         {
-            _rb.MovePosition(Vector2.Lerp(transform.position, 
-                new Vector2(_worldPosition.x, _worldPosition.y), _dragSpeed * Time.deltaTime));
+            _rb.MovePosition(Vector3.Lerp(transform.position,
+                new Vector3(_worldPosition.x, transform.position.y, _worldPosition.z), 
+                _dragSpeed * Time.deltaTime));
         }
 
         private void OnDrop()
