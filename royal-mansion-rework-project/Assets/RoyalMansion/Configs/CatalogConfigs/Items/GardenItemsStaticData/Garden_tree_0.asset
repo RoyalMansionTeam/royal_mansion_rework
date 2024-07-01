@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSection: 10
   Name: Tree1
-  Price: 5
+  Price: 50
   PrefabAssetReference:
-    m_AssetGUID: 0a037678d57c981499f5b22d8c1b368c
+    m_AssetGUID: 64d17ed68a995ca48b104370b1465e4f
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 9a01c212c42ff4f40a4882d713e031c3, type: 3}

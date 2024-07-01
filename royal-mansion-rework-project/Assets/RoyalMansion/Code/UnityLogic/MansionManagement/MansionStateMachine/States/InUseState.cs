@@ -32,7 +32,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             _stateRewardData = _stateMachineData.UnitData.GetTaskData
                 (_mansionStateMachine.GetUnitStateEnum(GetType()));
             SpawnTimer();
-
+            if (_stateMachineData.UnitData.UnitType != UnitType.Apartment)
+                return;
             if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
         }
@@ -58,7 +59,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
 
         private async void SpawnTimer()
         {
-            _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.ApartmentStayTimer);
+            if(_stateMachineData.UnitData.UnitType == UnitType.Apartment)
+                _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.ApartmentStayTimer);
+            else if (_stateMachineData.UnitData.UnitType == UnitType.Garden)
+                _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.GardenTimer);
             _timer.TimerDone += OnTimerDone;
             _timer.InitTimer(_stateRewardData.Time.ToFloat(), _stateMachineData.UnitData.UnitID);
         }

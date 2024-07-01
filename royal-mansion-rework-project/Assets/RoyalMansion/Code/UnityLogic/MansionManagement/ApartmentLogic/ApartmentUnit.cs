@@ -45,7 +45,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
 
         public void SetBasicUnitRequirements()
         {
-            _basicRequirements = UnitData.BasicRequirements;
+            _basicRequirements = UnitData.GetUnitBasicRequirements();
             if (_basicRequirements.Length == 0)
                 return;
             foreach (UnitFurnitureRequirements requiredItem in _basicRequirements)

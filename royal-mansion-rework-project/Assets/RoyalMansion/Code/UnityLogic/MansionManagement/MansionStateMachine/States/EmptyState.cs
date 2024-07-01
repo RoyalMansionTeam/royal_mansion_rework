@@ -26,7 +26,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             if (_staticData.BasicRequirementsMetState)
                 OnUnitBasicRequirementsMet();
             else
-                SetEmptyApartmentUnit();
+                SetEmptyUnit();
         }
 
 
@@ -48,9 +48,13 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             /*if (_staticData.UnitData.UnitType == UnitType.Apartment)
                 _staticData.SceneContext.Kitchen.AddToOrderList(_npc);*/
         }
-        private void SetEmptyApartmentUnit()
+        private void SetEmptyUnit()
         {
-            SetEmptyApartmentUI();
+            Debug.Log(_staticData.UnitData.UnitType);
+            if (_staticData.UnitData.UnitType == UnitType.Apartment)
+                SetEmptyApartmentUI();
+            else if (_staticData.UnitData.UnitType == UnitType.Garden)
+                SetEmptyGardenUI();
             _staticData.BasicRequirementsMet += OnUnitBasicRequirementsMet;
         }
 
@@ -65,6 +69,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 else
                     SpawnNPC();
             }
+            else if (_staticData.UnitData.UnitType == UnitType.Garden)
+                _mansionStateMachine.Enter<InUseState>();
         }
 
         private async void SetFurnituredApartmentUI() =>
@@ -73,6 +79,9 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private async void SetEmptyApartmentUI() =>
             await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
             SetUIMessenge(InternalUnitStates.AwaitingFurniture);
+        private async void SetEmptyGardenUI() =>
+            await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
+            SetUIMessenge(InternalUnitStates.AwaitingSeed);
 
         private void SpawnNPC()
         {

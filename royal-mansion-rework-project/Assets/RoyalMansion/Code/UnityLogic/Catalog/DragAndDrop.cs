@@ -79,6 +79,11 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
         {
             _isInDrag = false;
         }
+
+        private void OnDestroy()
+        {
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
 }

@@ -25,8 +25,9 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             _stateRewardData = stateRewardData;
             _stateMachineData = _mansionStateMachine.GetStateMachineData();
             _mansionStateMachine.LastTask = stateRewardData.State;
-            if (_stateMachineData.UnitData.UnitType == UnitType.Apartment)
-                SetApartmentUI();
+            SetUnitUI();
+            if (_stateMachineData.UnitData.UnitType != UnitType.Apartment)
+                return;
             if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
         }
@@ -49,13 +50,17 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             SetNpcDestination();
         }
 
-        private async void SetApartmentUI()
+        private async void SetUnitUI()
         {
-            GameObject uiObject = await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
-            SetUIMessenge(InternalUnitStates.Collectable);
+            GameObject uiObject = null;
+            if (_stateMachineData.UnitData.UnitType == UnitType.Apartment)
+                uiObject = await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
+            SetUIMessenge(InternalUnitStates.CollectableApartment);
+            else if (_stateMachineData.UnitData.UnitType == UnitType.Garden)
+                uiObject = await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
+            SetUIMessenge(InternalUnitStates.CollectableGarden);
             if (uiObject.TryGetComponent(out TextUIHandler textUIHandler))
                 textUIHandler.SetTextField(_stateRewardData.Amount.ToString());
-
         }
         private void SpawnNPC(NpcSaveData saveData)
         {

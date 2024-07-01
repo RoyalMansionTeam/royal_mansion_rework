@@ -132,6 +132,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 964ae7bcfcfe6e74ca70a9a516b194e2
+    m_Address: CollectableGardenUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b9a18e33cb7c19458d04ed129cf547e
+    m_Address: SeedTaskUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e8cff3f1e0d9cb4ea0f95987af988b6
+    m_Address: GardenTimer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64d17ed68a995ca48b104370b1465e4f
+    m_Address: garden_tree_000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 516a9bf27ab45484986f3052a82b9a3a, type: 2}
   m_SchemaSet:
