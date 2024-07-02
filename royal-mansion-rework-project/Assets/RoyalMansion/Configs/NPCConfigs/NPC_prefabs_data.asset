@@ -16,3 +16,5 @@ MonoBehaviour:
   - {fileID: 5737941152645718331, guid: 2b1cc6d9149c7b64f927c1c4a80e0dd7, type: 3}
   _waiterPrefabs:
   - {fileID: 5737941152645718331, guid: 1fd641028d24d1d44b7f4ae06569235b, type: 3}
+  _cookPrefabs:
+  - {fileID: 5737941152645718331, guid: 5d968236db5ebe145aedbd4ade2e42af, type: 3}

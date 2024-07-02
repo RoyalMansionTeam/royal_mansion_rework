@@ -38,11 +38,13 @@ namespace RoyalMasion.Code.Infrastructure.StateMachine.States
 
         public void Enter(SceneID levelID)
         {
+            InitNPCFactory();
             _sceneLoader.LoadScene(levelID, OnLoaded);
         }
 
         public void Enter(string levelID)
         {
+            InitNPCFactory();
             var sceneIndex = SceneManager.GetSceneByName(levelID).buildIndex;
             _sceneLoader.LoadScene(sceneIndex, OnLoaded);
         }
@@ -51,7 +53,7 @@ namespace RoyalMasion.Code.Infrastructure.StateMachine.States
         {
             _uiFactory.ClearUIRoot();
             SpawnPlayer();
-            await InitNPCFactory();
+            //await InitNPCFactory();
             ApplyProgressOnLevel();
 
             _gameStateMachine.Enter<GameLoopState>();

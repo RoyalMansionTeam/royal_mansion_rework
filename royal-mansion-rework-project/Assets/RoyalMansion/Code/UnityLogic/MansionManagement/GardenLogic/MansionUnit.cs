@@ -56,7 +56,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
             _npcFactory = npcFactory;
             _sceneContext = sceneContext;
             _uiFactory = uiFactory;
-
             RegisterSaveableEntity();
         }
 

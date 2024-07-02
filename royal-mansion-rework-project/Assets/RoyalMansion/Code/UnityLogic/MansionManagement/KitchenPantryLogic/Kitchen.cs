@@ -13,22 +13,29 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
     public class Kitchen : MansionUnit
     {
         [SerializeField] private KitchenStaticData _unitData;
+        [SerializeField] private Transform _waiterSpawnPoint;
+        [SerializeField] private Transform _cookSpawnPoint;
 
         private List<GuestNPC> _guestsToOrder = new();
+        private WaiterNPC _waiterNPC;
+        private CookNPC _cookNPC;
         private bool _isAbleToCook;
         private bool _inOrderLoop;
 
         private GuestNPC _currentGuest;
 
 
-        private void OnEnable()
+        private void Start()
         {
             InitUnitData(_unitData);
+            SpawnStaff();
             _isAbleToCook = false;
             _inOrderLoop = false;
             StateMashine.Enter<EmptyState>();
             Subscribe();
         }
+
+
         private void Subscribe()
         {
             StateMashine.StateChanged += TrackKitchenLoop;
@@ -58,6 +65,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
         {
             if (!_guestsToOrder.Contains(guest))
                 _guestsToOrder.Add(guest);
+        }
+        private void SpawnStaff()
+        {
+            _waiterNPC = _npcFactory.SpawnNpc<WaiterNPC>(_waiterSpawnPoint);
+            _cookNPC = _npcFactory.SpawnNpc<CookNPC>(_cookSpawnPoint);
         }
 
         private bool HasOrders() => 
@@ -95,8 +107,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
 
         private void StartDelivery()
         {
-            WaiterNPC waiter = _npcFactory.SpawnNpc<WaiterNPC>();
-            waiter.SpawnUI();
+            //waiter is already spawned
+            _waiterNPC.SpawnUI();
         }
 
         private void HandleCookCommand()
@@ -109,7 +121,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             RemoveGuestFromOrderList(_currentGuest);
             StateMashine.Enter<InUseState>();
         }
-        private void RemoveGuestFromOrderList(GuestNPC guest)
+        public void RemoveGuestFromOrderList(GuestNPC guest)
         {
             if (_guestsToOrder.Contains(guest))
                 _guestsToOrder.Remove(guest);

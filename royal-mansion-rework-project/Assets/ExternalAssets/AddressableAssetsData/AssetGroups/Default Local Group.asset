@@ -152,6 +152,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fd641028d24d1d44b7f4ae06569235b
+    m_Address: NPC_waiter_test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d968236db5ebe145aedbd4ade2e42af
+    m_Address: NPC_cook_test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 516a9bf27ab45484986f3052a82b9a3a, type: 2}
   m_SchemaSet:
