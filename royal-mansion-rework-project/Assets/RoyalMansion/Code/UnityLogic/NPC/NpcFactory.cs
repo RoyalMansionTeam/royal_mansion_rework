@@ -36,13 +36,12 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             _prefabData = await _assetProvider.Load<NpcPrefabData>
                 (address: AssetAddress.NPC_DATA_PATH);
             _prefabs = _prefabData.Prefabs;
-            Debug.Log("LoadAssets");
 
         }
         public TNpc SpawnNpc<TNpc>() where TNpc : NpcBase
         {
             GameObject instance = UnityEngine.Object.Instantiate(_prefabs[typeof(TNpc)]
-                [UnityEngine.Random.Range(0, _prefabs.Count-1)],
+                [UnityEngine.Random.Range(0, _prefabs[typeof(TNpc)].Count-1)],
                 _sceneContext.MansionSpawnPoints.GuestSpawnPoint);
             instance.transform.position = _sceneContext.MansionSpawnPoints.GuestSpawnPoint.position;
             TNpc npcComponent = instance.GetComponent<TNpc>();
@@ -54,9 +53,9 @@ namespace RoyalMansion.Code.UnityLogic.NPC
         public TNpc SpawnNpc<TNpc>(Transform at) where TNpc : NpcBase
         {
             GameObject instance = UnityEngine.Object.Instantiate(_prefabs[typeof(TNpc)]
-                [UnityEngine.Random.Range(0, _prefabs.Count - 1)],
-                at);
-            instance.transform.position = _sceneContext.MansionSpawnPoints.GuestSpawnPoint.position;
+                [UnityEngine.Random.Range(0, _prefabs[typeof(TNpc)].Count - 1)],
+                _sceneContext.MansionSpawnPoints.GuestSpawnPoint);
+            instance.transform.position = at.localPosition;
             TNpc npcComponent = instance.GetComponent<TNpc>();
             npcComponent.SetProgress(_progressService);
             _mansionFactory.RegisterSaveableEntity(npcComponent);

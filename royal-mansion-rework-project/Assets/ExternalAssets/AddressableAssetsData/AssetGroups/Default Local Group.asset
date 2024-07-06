@@ -20,147 +20,176 @@ MonoBehaviour:
   - m_GUID: acfc6bdace8f96e42ab2f4d1755c99b8
     m_Address: GameStaticData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5ccc20f9e3cb7947bb1e9912624ec4e
     m_Address: UnitTimer
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb454c53b5cdc6640850b7c9a0a632b6
     m_Address: NpcData
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b1cc6d9149c7b64f927c1c4a80e0dd7
     m_Address: NPC_test
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb4c72bb8243ebf4a819cfc104ac3e2b
     m_Address: Garden_tree_0
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b190012cf9f912f4cbe5da5cb39942c3
     m_Address: Apartment_bed_0
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f924cf3fa2ed8a4f9a41c4745a312c2
     m_Address: Apartment_bath_0
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a62ff20c9321a1f468cfa7b62ba2eba0
     m_Address: ApartmentCatalogConfig
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d3cfc260c2ec39c4ea06edf468a44ac7
     m_Address: CatalogSectionUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f10d143f9da7b624eb9ea03e29f4384d
     m_Address: CatalogItemUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e93f275ea5f17014cb190445ff342a97
     m_Address: GardenCatalogConfig
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6071f7ef384c26f468c1c6341503ef6d
     m_Address: CollectableApartmentUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 349f162d195f4694a9aaf9744f285cc6
     m_Address: LockedUnitUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ca5c82e33318d846a0a9def6991d60b
     m_Address: UnlockableUnitUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f248c231616c7744b0b22411f6ee4f1
     m_Address: FreeApartmentUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 68cffbc88570e6f48bccf90fa1057d85
     m_Address: CleaningTimer
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d46a87b1ead5ef446bfc09103323fefb
     m_Address: Timer
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8aad860e0ff1a254c8b84c94ee3af6f1
     m_Address: UnitUIBody
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 29e4c1ba163917d469f71fcd7fb22c8d
     m_Address: FurnitureTaskUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de7c23d2363467c45b3036cd895bffb5
     m_Address: WeedTaskUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f5bfd2f36086cb4b943be2ecfc2dca1
     m_Address: IrrigationTaskUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3af549c43adbbf0439d331a93ea13799
     m_Address: CleanTaskUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd2a4cb3e3563704784abef5650f2d72
     m_Address: Bed_01
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 964ae7bcfcfe6e74ca70a9a516b194e2
     m_Address: CollectableGardenUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b9a18e33cb7c19458d04ed129cf547e
     m_Address: SeedTaskUI
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9e8cff3f1e0d9cb4ea0f95987af988b6
     m_Address: GardenTimer
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 64d17ed68a995ca48b104370b1465e4f
     m_Address: garden_tree_000
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1fd641028d24d1d44b7f4ae06569235b
     m_Address: NPC_waiter_test
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d968236db5ebe145aedbd4ade2e42af
     m_Address: NPC_cook_test
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - mansion
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 516a9bf27ab45484986f3052a82b9a3a, type: 2}

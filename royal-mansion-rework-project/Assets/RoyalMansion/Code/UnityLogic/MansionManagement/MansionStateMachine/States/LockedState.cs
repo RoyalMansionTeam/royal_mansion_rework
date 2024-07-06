@@ -66,10 +66,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             SetUIMessenge(InternalUnitStates.Unlockable);
             if (uiObject == null)
                 return;
-            Debug.Log(uiObject.name);
             if (uiObject.TryGetComponent(out TextUIHandler textUIHandler))
             {
-                Debug.Log("HasUnlockable");
                 textUIHandler.SetTextField(_mansionStateMachine.GetStateMachineData().
                       UnitData.UnitPrice.ToString());
             }

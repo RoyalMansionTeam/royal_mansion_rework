@@ -37,6 +37,10 @@ namespace RoyalMasion.Code.Infrastructure.Services.AssetProvider
               Addressables.LoadAssetAsync<T>(address),
               cacheKey: address);
         }
+        /*public async Task<List<T>> LoadMultiple<T>(List<string> keys) where T : class
+        {
+            return await Addressables.LoadAssetsAsync<T>(keys, null, Addressables.MergeMode.Union, false);
+        }*/
         
         public Task<GameObject> Instantiate(string address, Vector3 at) =>
           Addressables.InstantiateAsync(address, at, Quaternion.identity).Task;
@@ -76,5 +80,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.AssetProvider
 
             resourceHandles.Add(handle);
         }
+
     }
 }
