@@ -1,30 +1,71 @@
+using RoyalMansion.Code.Extensions;
+using RoyalMasion.Code.Infrastructure.Saving;
+using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using VContainer;
 
 namespace RoyalMasion.Code.UnityLogic.MasionManagement
 {
-    public class Timer : MonoBehaviour
+    public class Timer : MonoBehaviour,  ISaveWriter, ISaveReader
     {
         [SerializeField] private Image _timerBar;
         public Action TimerDone;
 
+        private GameProgress _gameProgress;
         private float _elapsedTime;
         private float _taskTime;
+        private float _taskEndRealime;
 
-        public void InitTimer(float taskTime)
+        public string SaveableID { get; set; }
+
+        public void InitProgressService(IPersistentProgressService progressService)
         {
-            //_elapsedTime = targetTime;
+            _gameProgress = progressService.Progress;
+        }
+        public void InitTimer(float taskTime, string UnitID)
+        {
+            SaveableID = UnitID;
             _taskTime = _elapsedTime = taskTime;
+            if (TryLoadProgress(out TimerSaveData loadData) != null)
+                LoadTimer(loadData.TaskEndRealtime);
+            else
+                SetNewTimer();
         }
         public void Despawn()
         {
-            CleanUp();
             Destroy(gameObject);
         }
+        private TimerSaveData TryLoadProgress(out TimerSaveData data)
+        {
+            data = null;
+            if (_gameProgress.MansionProgress.TimerSaveData == null)
+                return data;
+            foreach(TimerSaveData timerData in _gameProgress.MansionProgress.TimerSaveData)
+            {
+                if (timerData.UniqueSaveID != SaveableID)
+                    continue;
+                data = timerData;
+                break;
+            }
+            return data;
+        }
+
+        private void SetNewTimer() => 
+            _taskEndRealime = Epoch.Current() + _taskTime;
+
+        private void LoadTimer(float savedEndRealtime)
+        {
+            _taskEndRealime = savedEndRealtime;
+            _elapsedTime = Epoch.SecondsElapsed(_taskEndRealime);
+            if(_elapsedTime<=0)
+                TimerDone?.Invoke();
+        }
+
         private void Update()
         {
             UpdateTime();
@@ -46,12 +87,18 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
             _timerBar.fillAmount = timePercent;
         }
 
-        private void CleanUp()
+        public void SaveProgress(GameProgress progress)
         {
-            //Clear player prefs of this timer
-
+            progress.MansionProgress.TryAddTimer(
+                new TimerSaveData(
+                    uniqueSaveID: SaveableID,
+                    taskEndRealtime: _taskEndRealime
+                ));
         }
 
+        public void LoadProgress(GameProgress progress)
+        {
+        }
     }
 
     

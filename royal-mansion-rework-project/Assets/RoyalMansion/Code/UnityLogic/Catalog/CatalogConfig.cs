@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RoyalMansion.Code.UnityLogic.Catalog
 {
-    [CreateAssetMenu(fileName = "UnitCatalogConfig", menuName = "Static Data/Catalog/CatalogCondig")]
+    [CreateAssetMenu(fileName = "UnitCatalogConfig", menuName = "Static Data/Catalog/CatalogConfig")]
     public class CatalogConfig : ScriptableObject
     {
         [SerializeField] public UnitType UnitType;

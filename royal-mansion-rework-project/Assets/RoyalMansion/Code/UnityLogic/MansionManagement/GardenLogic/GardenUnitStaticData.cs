@@ -8,7 +8,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
     [CreateAssetMenu(fileName = "Garden_0_static_data", menuName = "Static Data/GardenUnitStaticData")]
     public class GardenUnitStaticData : UnitStaticData
     {
-
     }
 
 }

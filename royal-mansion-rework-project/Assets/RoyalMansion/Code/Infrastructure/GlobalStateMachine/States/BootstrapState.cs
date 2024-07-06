@@ -11,23 +11,23 @@ namespace RoyalMasion.Code.Infrastructure.StateMachine.States
 {
     public class BootstrapState : IState
     {
-        private readonly IPersistentProgressService _progressService;
         private readonly IEconomyDataService _economyData;
-        private readonly ISaveLoadService _saveLoadService;
         private readonly IUIFactory _uiFactory;
         private readonly IStaticDataService _staticDataService;
+        private readonly ISaveLoadService _saveLoadService;
+        private readonly IPersistentProgressService _progressService;
         private IGameStateMachine _gameStateMachine;
 
         [Inject]
-        public BootstrapState(IPersistentProgressService progressService,
-            ISaveLoadService saveLoadService, IUIFactory uiFactory, 
-            IStaticDataService staticDataService, IEconomyDataService economyData)
+        public BootstrapState(IUIFactory uiFactory,
+            IStaticDataService staticDataService, IEconomyDataService economyData, 
+            ISaveLoadService saveLoadService, IPersistentProgressService progressService)
         {
             _staticDataService = staticDataService;
             _uiFactory = uiFactory;
+            _economyData = economyData;
             _saveLoadService = saveLoadService;
             _progressService = progressService;
-            _economyData = economyData;
         }
 
         public void SetupStateMachine(IGameStateMachine gameStateMachine)
@@ -42,22 +42,22 @@ namespace RoyalMasion.Code.Infrastructure.StateMachine.States
             await LoadServiceData();
             OnLoaded();
         }
-
         private void LoadProgressOrInitNew()
         {
-            _progressService.Progress = _saveLoadService.LoadProgress() ?? NewProgress();
-            _saveLoadService.SaveProgress();
+            if (_saveLoadService.LoadProgress() == null)
+                _progressService.Progress = NewProgress();
+            else
+                _progressService.Progress = _saveLoadService.LoadProgress();
         }
 
-        private PlayerProgress NewProgress()
-        {
-            var progress = new PlayerProgress();
-            return progress;
-        }
-
-        private void InitEconomyData()
-        {
+        private void InitEconomyData() => 
             _economyData.InitEconomyService();
+
+
+        private GameProgress NewProgress()
+        {
+            var progress = new GameProgress();
+            return progress;
         }
 
         private async Task LoadServiceData()

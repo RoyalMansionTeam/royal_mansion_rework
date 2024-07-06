@@ -1,9 +1,11 @@
 using RoyalMasion.Code.Infrastructure.Services.AssetProvider;
 using RoyalMasion.Code.Infrastructure.Services.SceneContext;
+using RoyalMasion.Code.UnityLogic.MasionManagement;
 using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -15,28 +17,35 @@ namespace RoyalMansion.Code.UnityLogic.NPC
         private readonly ISceneContextService _sceneContext;
         private NpcPrefabData _prefabData;
         private Dictionary<Type, List<GameObject>> _prefabs;
+        private IMansionFactory _mansionFactory;
 
         [Inject]
-        public NpcFactory(IAssetProvider assetProvider, ISceneContextService sceneContext)
+        public NpcFactory(IAssetProvider assetProvider, ISceneContextService sceneContext, 
+            IMansionFactory mansionFactory)
         {
             _assetProvider = assetProvider;
             _sceneContext = sceneContext;
+            _mansionFactory = mansionFactory;
         }
-        
-        public async void SetNpcFactory() 
+
+        public async Task SetNpcFactory() 
         {
             _prefabData = await _assetProvider.Load<NpcPrefabData>
                 (address: AssetAddress.NPC_DATA_PATH);
             _prefabs = _prefabData.Prefabs;
+            Debug.Log(_prefabs + " pref");
 
         }
         public TNpc SpawnNpc<TNpc>() where TNpc : NpcBase
         {
+            Debug.Log(_prefabs);
             GameObject instance = UnityEngine.Object.Instantiate(_prefabs[typeof(TNpc)]
                 [UnityEngine.Random.Range(0, _prefabs.Count-1)],
                 _sceneContext.MansionSpawnPoints.GuestSpawnPoint);
             instance.transform.position = _sceneContext.MansionSpawnPoints.GuestSpawnPoint.position;
-            return instance.GetComponent<TNpc>();
+            TNpc npcComponent = instance.GetComponent<TNpc>();
+            _mansionFactory.RegisterSaveableEntity(npcComponent);
+            return npcComponent;
         }
 
         public void Clear() 

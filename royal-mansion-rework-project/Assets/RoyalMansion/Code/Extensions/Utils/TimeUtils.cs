@@ -6,20 +6,6 @@ using UnityEngine;
 
 namespace RoyalMansion.Code.Extensions.Utils
 {
-    public class TimeUtils
-    {
-    }
-    public struct TimerSpawnData
-    {
-        public Vector3 At { get; }
-        public Transform Parent { get; }
-
-        public TimerSpawnData(Vector3 at, Transform parent)
-        {
-            At = at;
-            Parent = parent;
-        }
-    }
 
     [System.Serializable]
     public struct NormalizedDateTime
