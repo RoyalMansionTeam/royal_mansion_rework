@@ -11,8 +11,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Personal/MansionScene.unity
     guid: 9036deb9f689c2d408b1b520b353e7e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Personal/CoreLoopTest3D.unity
     guid: 12aa9de70babf3f47b2fb3a23798b42e
+  - enabled: 1
+    path: Assets/Scenes/MansionScene3D.unity
+    guid: 3b85184b3708d0644b7dae128a9626a6
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: cda6777eee1fd3247a7ab44e4e00981a, type: 2}

@@ -20,6 +20,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
 
         public void Enter()
         {
+            if (_mansionStateMachineData.UnitData.UnitType == UnitType.Kitchen)
+                _mansionStateMachine.Enter<EmptyState>();
             Subscribe();
             OnResourcesChanged(ResourceType.SoftVallue,
                 _mansionStateMachineData.EconomyData.GetEconomyData(ResourceType.SoftVallue));

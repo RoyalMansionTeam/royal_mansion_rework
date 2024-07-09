@@ -1,4 +1,5 @@
 using RoyalMansion.Code.UnityLogic.NPC;
+using RoyalMasion.Code.Editor;
 using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine;
@@ -13,6 +14,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
     public class Kitchen : MansionUnit
     {
         [SerializeField] private KitchenStaticData _unitData;
+        [SerializeField] private ObjectClickHandler _touchHandler;
         [SerializeField] private Transform _waiterSpawnPoint;
         [SerializeField] private Transform _cookSpawnPoint;
 
@@ -31,21 +33,26 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             SpawnStaff();
             _isAbleToCook = false;
             _inOrderLoop = false;
-            StateMashine.Enter<EmptyState>();
             Subscribe();
         }
 
 
         private void Subscribe()
         {
-            StateMashine.StateChanged += TrackKitchenLoop;
+            _touchHandler.ClickHandled += HandleTouch;
+            StateMachineInitiated += StartTrackingKitchenLoop;
         }
-
 
         private void Unsubscribe()
         {
+            _touchHandler.ClickHandled -= HandleTouch;
+            StateMachineInitiated -= StartTrackingKitchenLoop;
             StateMashine.StateChanged -= TrackKitchenLoop;
         }
+
+        private void StartTrackingKitchenLoop() => 
+            StateMashine.StateChanged += TrackKitchenLoop;
+
         private void HandleTouch()
         {
             StateMashine.Stay();
@@ -82,7 +89,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             if (!CheckResources())
                 return;
             _isAbleToCook = true;
-            //если да, разместить UI готовки и разрешить по клику переход в InUseState
             PlaceUI();
         }
         private bool CheckResources()

@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964352079394684565}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.49999994, y: -0.50000006, z: 0.49999848, w: 0.50000155}
   m_LocalPosition: {x: -0.4093, y: 0.03, z: 0.1618}
   m_LocalScale: {x: 0.26849565, y: 0.26981005, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7967133970111940320}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4147821539515825671
 SpriteRenderer:
@@ -108,13 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655032777442282716}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.0000012218952, y: 0.0000008046627, z: 0.70710576, w: 0.7071079}
   m_LocalPosition: {x: -0.3893, y: 0.8121, z: -1.32}
   m_LocalScale: {x: 0.113546334, y: 0.26735222, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7967133970111940320}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &8586204595867558915
 SpriteRenderer:
@@ -199,6 +199,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7339498014446722138}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -207,7 +208,6 @@ Transform:
   - {fileID: 1369778909689790554}
   - {fileID: 5595522749834192958}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6430904659140364613
 MeshFilter:
@@ -237,7 +237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f533dde16b1573740a27fd1853c4ef13, type: 2}
+  - {fileID: 2100000, guid: 3c91480acb4a30d43a8955ad9f3133c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8977c70b2586624c8de5b80bf2de638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dragSpeed: 0.1
+  _dragSpeed: 15
 --- !u!114 &1878431129325209675
 MonoBehaviour:
   m_ObjectHideFlags: 0

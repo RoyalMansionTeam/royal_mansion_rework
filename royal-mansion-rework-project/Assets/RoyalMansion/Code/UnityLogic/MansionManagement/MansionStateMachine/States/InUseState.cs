@@ -36,6 +36,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 return;
             if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
+            _stateMachineData.SceneContext.Kitchen.AddToOrderList(_npc);
         }
 
         public void Stay()
@@ -50,7 +51,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private void SpawnNPC(NpcSaveData saveData)
         {
             _npc = _stateMachineData.NpcFactory.SpawnNpc<GuestNPC>();
-            _npc.gameObject.transform.position = saveData.Position.AsUnityVector();
+            _npc.gameObject.transform.localPosition = saveData.Position.AsUnityVector();
             _npc.SaveableID = saveData.UniqueSaveID;
             _npc.SetNPC(_npc.gameObject.transform);
             _npc.AssignedUnitID = _stateMachineData.UnitData.UnitID;

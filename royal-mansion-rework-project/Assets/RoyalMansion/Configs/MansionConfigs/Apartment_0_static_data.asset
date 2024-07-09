@@ -17,8 +17,8 @@ MonoBehaviour:
   - State: 2
     Time:
       Houres: 0
-      Minutes: 1
-      Seconds: 0
+      Minutes: 0
+      Seconds: 3
     Reward: 2
     Amount: 40
   - State: 4

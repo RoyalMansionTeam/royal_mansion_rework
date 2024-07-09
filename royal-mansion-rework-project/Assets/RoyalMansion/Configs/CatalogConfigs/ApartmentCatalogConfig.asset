@@ -22,3 +22,7 @@ MonoBehaviour:
     ApartmentArea: 2
     Items:
     - {fileID: 11400000, guid: 6f924cf3fa2ed8a4f9a41c4745a312c2, type: 2}
+  - Section: 4
+    ApartmentArea: 1
+    Items:
+    - {fileID: 11400000, guid: bfa97339667da914082d267682ffa11f, type: 2}

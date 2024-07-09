@@ -29,6 +29,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine
         public NpcSaveData NpcSaveData { get; set; }
         public bool BasicRequirementsMetState { get; set; }
         public List<UnitVirtualCamera> VirtialCameraData { get; }
+        public List<ApartmentMaterialParents> ApartmentMaterialsData { get; set; }
 
         public MansionStateMachineData(IEconomyDataService economyDataService,
             INpcFactory npcFactory, UnitStaticData unitStaticData,

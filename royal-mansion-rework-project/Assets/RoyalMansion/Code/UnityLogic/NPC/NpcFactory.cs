@@ -55,7 +55,7 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             GameObject instance = UnityEngine.Object.Instantiate(_prefabs[typeof(TNpc)]
                 [UnityEngine.Random.Range(0, _prefabs[typeof(TNpc)].Count - 1)],
                 _sceneContext.MansionSpawnPoints.GuestSpawnPoint);
-            instance.transform.position = at.localPosition;
+            instance.transform.position = at.position;
             TNpc npcComponent = instance.GetComponent<TNpc>();
             npcComponent.SetProgress(_progressService);
             _mansionFactory.RegisterSaveableEntity(npcComponent);

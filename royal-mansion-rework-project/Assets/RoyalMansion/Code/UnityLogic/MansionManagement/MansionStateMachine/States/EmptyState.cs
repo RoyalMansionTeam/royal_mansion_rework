@@ -23,6 +23,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         public void Enter()
         {
+            if (_staticData.UnitData.UnitType == UnitType.Kitchen)
+                return;
             if (_staticData.BasicRequirementsMetState)
                 OnUnitBasicRequirementsMet();
             else
@@ -41,16 +43,15 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 spawnPoint: _staticData.ItemSpawnPoint,
                 unitID: _staticData.UnitData.UnitID,
                 unitOnBuyEvent: _staticData.ItemBoughtEvent,
-                virtualCameras: _staticData.VirtialCameraData);
+                virtualCameras: _staticData.VirtialCameraData,
+                apartmentMaterialsData: _staticData.ApartmentMaterialsData);
         }
         public void Exit()
         {
-            /*if (_staticData.UnitData.UnitType == UnitType.Apartment)
-                _staticData.SceneContext.Kitchen.AddToOrderList(_npc);*/
+            
         }
         private void SetEmptyUnit()
         {
-            Debug.Log(_staticData.UnitData.UnitType);
             if (_staticData.UnitData.UnitType == UnitType.Apartment)
                 SetEmptyApartmentUI();
             else if (_staticData.UnitData.UnitType == UnitType.Garden)

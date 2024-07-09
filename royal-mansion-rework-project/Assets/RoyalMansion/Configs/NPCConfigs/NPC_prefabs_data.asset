@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: NPC_prefabs_data
   m_EditorClassIdentifier: 
   _guestPrefabs:
-  - {fileID: 5737941152645718331, guid: 2b1cc6d9149c7b64f927c1c4a80e0dd7, type: 3}
+  - {fileID: 6245492615533650368, guid: 03cfa6f2ceae0d4478899a123db2f170, type: 3}
   _waiterPrefabs:
   - {fileID: 5737941152645718331, guid: 1fd641028d24d1d44b7f4ae06569235b, type: 3}
   _cookPrefabs:
-  - {fileID: 5737941152645718331, guid: 5d968236db5ebe145aedbd4ade2e42af, type: 3}
+  - {fileID: 6245492615533650368, guid: 4a7cb0274b798c047a6be2f86827040b, type: 3}

@@ -12,7 +12,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionTriggers
         {
             if (other.gameObject.transform.parent == null)
                 return;
-            if (other.gameObject.transform.parent.TryGetComponent(out NpcBase npc))
+            if (other.gameObject.TryGetComponent(out NpcBase npc))
             {
                 if (npc.FinishedTask)
                     npc.Despawn();

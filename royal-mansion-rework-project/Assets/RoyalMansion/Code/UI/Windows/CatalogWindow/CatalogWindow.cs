@@ -6,6 +6,7 @@ using RoyalMasion.Code.Infrastructure.Services.ProjectData;
 using RoyalMasion.Code.Infrastructure.Services.SceneContext;
 using RoyalMasion.Code.UI.Windows;
 using RoyalMasion.Code.UnityLogic.MasionManagement;
+using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
 using System;
 using System.Collections;
@@ -47,6 +48,7 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         private GameObject _sectionPrefab;
         private GameObject _itemPrefab;
         private ApartmentAreaType _currentApartmentArea;
+        private List<ApartmentMaterialParents> _apartmentMaterialsData;
         private CatalogSection _currentSection;
         private Transform _newItemSpawnPoint;
         private GameObject _objectInPlacing;
@@ -99,14 +101,16 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
             _itemPrefab = await _assetProvider.Load<GameObject>(_itemReference);
         }
 
-        public async void SetUnitType(UnitType targetType, Transform spawnPoint, 
-            string unitID, Action<CatalogSection> unitOnBuyEvent, List<UnitVirtualCamera> virtualCameras)
+        public async void SetUnitType(UnitType targetType, Transform spawnPoint,
+            string unitID, Action<CatalogSection> unitOnBuyEvent, List<UnitVirtualCamera> virtualCameras,
+            List<ApartmentMaterialParents> apartmentMaterialsData)
         {
             _newItemSpawnPoint = spawnPoint;
             _unitID = unitID;
             _unitOnBuyEvent = unitOnBuyEvent;
             _virtualCameras = virtualCameras;
             _currentApartmentArea = ApartmentAreaType.Bedroom;
+            _apartmentMaterialsData = apartmentMaterialsData;
             switch (targetType)
             {
                 case UnitType.Apartment:
@@ -121,7 +125,7 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
                     _catalogData = gardenConfig.CatalogData;
                     foreach (CatalogAreaUI handler in _areaSwitchers)
                         Destroy(handler.gameObject);
-                        break;
+                    break;
             }
             if (_catalogData == null)
                 return;
@@ -211,15 +215,49 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
             if (!AbleToPurchase(itemData.Price))
                 return;
             _objectInPlacingData = itemData;
-            await SpawnObject(itemData);
+            if (itemData.ItemSection == CatalogSection.Walls)
+                await ApplyWalls(itemData);
+            else if (itemData.ItemSection == CatalogSection.Floors)
+                await ApplyFloors(itemData);
+            else
+                await SpawnObject(itemData);
             SwitchToPlacementUI();
+        }
+
+        private async Task ApplyFloors(CatalogItemStaticData itemData)
+        {
+            if (_apartmentMaterialsData.Count == 0)
+                return;
+            foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
+            {
+                if (apartmentMaterials.AreaType != _currentApartmentArea)
+                    continue;
+                Material loadedMaterial = await _assetProvider.Load<Material>
+                    (itemData.PrefabAssetReference);
+                apartmentMaterials.FloorsHandler.TryMaterial(loadedMaterial, itemData.PrefabAssetReference.AssetGUID);
+            }
+        }
+
+        private async Task ApplyWalls(CatalogItemStaticData itemData)
+        {
+            if (_apartmentMaterialsData.Count == 0)
+                return;
+            foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
+            {
+                Debug.Log(apartmentMaterials.AreaType);
+                if (apartmentMaterials.AreaType != _currentApartmentArea)
+                    continue;
+                Material loadedMaterial = await _assetProvider.Load<Material>
+                    (itemData.PrefabAssetReference);
+                apartmentMaterials.WallsHandler.TryMaterial(loadedMaterial, itemData.PrefabAssetReference.AssetGUID);
+            }
         }
 
         private async Task SpawnObject(CatalogItemStaticData itemData)
         {
             _objectInPlacing = await _mansionFactory.CreateUnitObject(
                             reference: itemData.PrefabAssetReference.AssetGUID,
-                            at: _newItemSpawnPoint.position,
+                            at: Vector3.zero,
                             parent: _newItemSpawnPoint);
             _objectInPlacing.transform.localScale = Vector3.one;
             _objectInPlacing.GetComponent<UnitItem>().SetItemData(
@@ -234,23 +272,92 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
         }
         private void RotatePlacement()
         {
+            if (_objectInPlacing == null)
+                return;
             if (_objectInPlacing.TryGetComponent(out UnitItem itemHandler))
                 itemHandler.Rotate();
         }
 
         private void CancelPlacement()
         {
-            Destroy(_objectInPlacing);
+            if (_objectInPlacingData.ItemSection == CatalogSection.Walls)
+                CancelWallPlacement();
+            else if (_objectInPlacingData.ItemSection == CatalogSection.Floors)
+                CancelFloorPlacement();
+            else
+                Destroy(_objectInPlacing);
             SwitchToCatalogUI();
+        }
+
+        private void CancelFloorPlacement()
+        {
+            if (_apartmentMaterialsData.Count == 0)
+                return;
+            foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
+            {
+                if (apartmentMaterials.AreaType != _currentApartmentArea)
+                    continue;
+                apartmentMaterials.FloorsHandler.CancelMaterial();
+            }
+        }
+
+        private void CancelWallPlacement()
+        {
+            if (_apartmentMaterialsData.Count == 0)
+                return;
+            foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
+            {
+                if (apartmentMaterials.AreaType != _currentApartmentArea)
+                    continue;
+                apartmentMaterials.WallsHandler.CancelMaterial();
+            }
         }
 
         private void ApplylPlacement()
         {
-            Destroy(_objectInPlacing.GetComponent<DragAndDrop>());
             _economyService.SetEconomyData(ResourceType.SoftVallue, -_objectInPlacingData.Price);
             _unitOnBuyEvent?.Invoke(_currentSection);
+
+            if (_objectInPlacingData.ItemSection == CatalogSection.Walls)
+                ApplyWallPlacement();
+            else if (_objectInPlacingData.ItemSection == CatalogSection.Floors)
+                ApplyFloorPlacement();
+            else
+                ApplyFurniturePlacement();
+            
             SwitchToCatalogUI();
         }
+
+        private void ApplyWallPlacement()
+        {
+            if (_apartmentMaterialsData.Count == 0)
+                return;
+            foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
+            {
+                if (apartmentMaterials.AreaType != _currentApartmentArea)
+                    continue;
+                apartmentMaterials.WallsHandler.ConfirmMaterial();
+            }
+        }
+
+        private void ApplyFloorPlacement()
+        {
+            if (_apartmentMaterialsData.Count == 0)
+                return;
+            foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
+            {
+                if (apartmentMaterials.AreaType != _currentApartmentArea)
+                    continue;
+                apartmentMaterials.FloorsHandler.ConfirmMaterial();
+            }
+        }
+
+        private void ApplyFurniturePlacement()
+        {
+            Destroy(_objectInPlacing.GetComponent<DragAndDrop>());
+            _objectInPlacing = null;
+        }
+
         private void SwitchToPlacementUI()
         {
             _catalogUI.SetActive(false);

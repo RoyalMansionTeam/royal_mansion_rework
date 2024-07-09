@@ -47,6 +47,8 @@ namespace RoyalMansion.Code.UnityLogic.NPC
         {
             if (this == null)
                 return;
+            if (AssignedUnitID == "")
+                return;
             _progress = progress;
             progress.MansionProgress.TryAddNpc(new NpcSaveData(
                 uniqueSaveID: SaveableID,

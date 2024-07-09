@@ -149,12 +149,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bd2a4cb3e3563704784abef5650f2d72
-    m_Address: Bed_01
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - mansion
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 964ae7bcfcfe6e74ca70a9a516b194e2
     m_Address: CollectableGardenUI
     m_ReadOnly: 0
@@ -558,6 +552,27 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3d43074b65b0b1140b5f52ccf096539a
     m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_006.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a7cb0274b798c047a6be2f86827040b
+    m_Address: NPC_Chief
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - mansion
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fb3e6f3bab41a846bc76a2b6980faf3
+    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Furniture/BedPrefabs/Bed_02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03cfa6f2ceae0d4478899a123db2f170
+    m_Address: NPC_Guest_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54baf62711273884e944870fa752d12d
+    m_Address: WALL_TEST
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
