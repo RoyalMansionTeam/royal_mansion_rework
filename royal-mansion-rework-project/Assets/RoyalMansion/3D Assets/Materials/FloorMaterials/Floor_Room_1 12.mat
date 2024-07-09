@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Floor_Room_1 12
   m_Shader: {fileID: 4800000, guid: ccfc7d68845db8341944b3091b59be55, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
   - L_F_O_ON
@@ -25,6 +27,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - ALWAYS
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -289,7 +292,7 @@ Material:
     - _RampScale: 1
     - _RampSmooth: 1
     - _RampSmoothing: 1
-    - _RampThreshold: 0.5
+    - _RampThreshold: 0.55
     - _RampType: 0
     - _ReceiveShadows: 1
     - _ReceiveShadowsOff: 1
