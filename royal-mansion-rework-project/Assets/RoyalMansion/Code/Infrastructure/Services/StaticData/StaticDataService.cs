@@ -38,7 +38,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.StaticData
         {
             foreach (var window in GameData.Windows)
                 _windows.Add(window.ID, window);
-            Debug.Log("WindowDataLoaded");
         }
     }
 }

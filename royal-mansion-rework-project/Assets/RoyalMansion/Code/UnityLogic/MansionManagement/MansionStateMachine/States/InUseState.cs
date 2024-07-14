@@ -5,20 +5,22 @@ using VContainer;
 using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using System;
+using RoyalMasion.Code.Infrastructure.Saving;
+using RoyalMansion.Code.UnityLogic.NPC;
+using RoyalMasion.Code.Extensions;
 
 namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.States
 {
     public class InUseState : IMansionState
     {
         private MansionStateMachineData _stateMachineData;
-        private IMansionFactory _mansionFactory;
-        private IMansionStateMashine _mansionStateMachine;
+        private IMansionStateMachine _mansionStateMachine;
 
         private Timer _timer;
         private UnitTaskData _stateRewardData;
+        private GuestNPC _npc;
 
-
-        public void SetupStateMachine(IMansionStateMashine gameStateMachine)
+        public void SetupStateMachine(IMansionStateMachine gameStateMachine)
         {
             _mansionStateMachine = gameStateMachine;
         }
@@ -26,12 +28,14 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         public void Enter()
         {
             _stateMachineData = _mansionStateMachine.GetStateMachineData();
-            _mansionFactory = _stateMachineData.MansionFactory;
 
             _stateRewardData = _stateMachineData.UnitData.GetTaskData
                 (_mansionStateMachine.GetUnitStateEnum(GetType()));
-            SpawnTimer(_stateMachineData.TimerSpawn);
+            SpawnTimer();
 
+            Debug.Log(_stateMachineData.NpcSaveData);
+            if (_stateMachineData.NpcSaveData!=null)
+                SpawnNPC(_stateMachineData.NpcSaveData);
         }
 
         public void Stay()
@@ -45,19 +49,27 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 EndNPCStay();
         }
 
-        private void EndNPCStay()
+        private void SpawnNPC(NpcSaveData saveData)
         {
-            _mansionStateMachine.NPC.EndStaySequence();
-            _mansionStateMachine.NPC = null;
+            _npc = _stateMachineData.NpcFactory.SpawnNpc<GuestNPC>();
+            _npc.gameObject.transform.position = saveData.Position.AsUnityVector();
+            _npc.SaveableID = saveData.UniqueSaveID;
+            _npc.SetNPC(_npc.gameObject.transform);
+            _npc.AssignedUnitID = _stateMachineData.UnitData.UnitID;
+            _mansionStateMachine.NPC = _npc;
         }
 
-        private async void SpawnTimer(TimerSpawnData spawnData)
+        private void EndNPCStay()
         {
-            GameObject timerObj = await _mansionFactory.CreateTimer(spawnData.At, spawnData.Parent);
-            timerObj.transform.localScale = new Vector3(.5f, .5f, .5f);
-            _timer = timerObj.GetComponent<Timer>();
-            _timer.InitTimer(_stateRewardData.Time.ToFloat());
+            /*_mansionStateMachine.NPC.EndStaySequence();
+            _mansionStateMachine.NPC = null;*/
+        }
+
+        private async void SpawnTimer()
+        {
+            _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.ApartmentStayTimer);
             _timer.TimerDone += OnTimerDone;
+            _timer.InitTimer(_stateRewardData.Time.ToFloat(), _stateMachineData.UnitData.UnitID);
         }
 
         private void OnTimerDone()

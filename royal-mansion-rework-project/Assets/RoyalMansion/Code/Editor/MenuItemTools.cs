@@ -13,6 +13,13 @@ namespace RoyalMasion.Code.Editor
         {
             EditorSceneManager.OpenScene("Assets/Scenes/BootstrapScene.unity", OpenSceneMode.Single);
         }
+
+
+        [MenuItem("Shortcuts/PlayerProgress/DeletePlayerPrefs")]
+        public static void ClearPlayerPrefs()
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0e0c29d944fd749a01a368d46701f2, type: 3}
   m_Name: Garden_1_static_data
   m_EditorClassIdentifier: 
+  UnitID: garden_test_1
   _tasks:
   - State: 2
     Time:

@@ -28,8 +28,15 @@ namespace RoyalMansion.Code.UI.Windows.HUD
         private void Start()
         {
             Subscribe();
+            LoadData();
         }
 
+        private void LoadData()
+        {
+            UpdateMoneyUI(
+                resourceType: targetResourceType,
+                amount: _economyDataService.GetEconomyData(targetResourceType));
+        }
 
         private void Subscribe()
         {
