@@ -18,14 +18,14 @@ MonoBehaviour:
     Time:
       Houres: 0
       Minutes: 0
-      Seconds: 15
+      Seconds: 3
     Reward: 2
     Amount: 40
   - State: 4
     Time:
       Houres: 0
       Minutes: 0
-      Seconds: 4
+      Seconds: 3
     Reward: 0
     Amount: 0
   _unitType: 0

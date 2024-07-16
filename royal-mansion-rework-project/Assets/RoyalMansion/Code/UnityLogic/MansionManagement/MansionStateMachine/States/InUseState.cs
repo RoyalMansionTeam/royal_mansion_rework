@@ -32,10 +32,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             _stateRewardData = _stateMachineData.UnitData.GetTaskData
                 (_mansionStateMachine.GetUnitStateEnum(GetType()));
             SpawnTimer();
-
-            Debug.Log(_stateMachineData.NpcSaveData);
-            if (_stateMachineData.NpcSaveData!=null)
+            if (_stateMachineData.UnitData.UnitType != UnitType.Apartment)
+                return;
+            if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
+            _stateMachineData.SceneContext.Kitchen.AddToOrderList(_npc);
         }
 
         public void Stay()
@@ -45,29 +46,24 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         public void Exit()
         {
             _timer.Despawn();
-            if (_stateMachineData.UnitData.UnitType == UnitType.Apartment)
-                EndNPCStay();
         }
 
         private void SpawnNPC(NpcSaveData saveData)
         {
             _npc = _stateMachineData.NpcFactory.SpawnNpc<GuestNPC>();
-            _npc.gameObject.transform.position = saveData.Position.AsUnityVector();
+            _npc.gameObject.transform.localPosition = saveData.Position.AsUnityVector();
             _npc.SaveableID = saveData.UniqueSaveID;
             _npc.SetNPC(_npc.gameObject.transform);
             _npc.AssignedUnitID = _stateMachineData.UnitData.UnitID;
             _mansionStateMachine.NPC = _npc;
         }
 
-        private void EndNPCStay()
-        {
-            /*_mansionStateMachine.NPC.EndStaySequence();
-            _mansionStateMachine.NPC = null;*/
-        }
-
         private async void SpawnTimer()
         {
-            _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.ApartmentStayTimer);
+            if(_stateMachineData.UnitData.UnitType == UnitType.Apartment)
+                _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.ApartmentStayTimer);
+            else if (_stateMachineData.UnitData.UnitType == UnitType.Garden)
+                _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.GardenTimer);
             _timer.TimerDone += OnTimerDone;
             _timer.InitTimer(_stateRewardData.Time.ToFloat(), _stateMachineData.UnitData.UnitID);
         }

@@ -18,7 +18,11 @@ MonoBehaviour:
     Time:
       Houres: 0
       Minutes: 0
-      Seconds: 10
+      Seconds: 30
     Reward: 3
     Amount: 15
   _unitType: 1
+  _unitPrice: 150
+  _basicRequirements:
+  - ItemType: 10
+    Amount: 1

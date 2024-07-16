@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 3794620749039740482}
   - component: {fileID: 4593045911122132204}
   - component: {fileID: 3220389568260262365}
+  - component: {fileID: -964186144308723516}
   m_Layer: 5
   m_Name: UnlockableUnitUI
   m_TagString: Untagged
@@ -154,6 +155,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &-964186144308723516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5053693541296652336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a516003dff52bc45a4ec6b01ae39dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textField: {fileID: 1175258436411110775}
 --- !u!1 &5925225491358599612
 GameObject:
   m_ObjectHideFlags: 0

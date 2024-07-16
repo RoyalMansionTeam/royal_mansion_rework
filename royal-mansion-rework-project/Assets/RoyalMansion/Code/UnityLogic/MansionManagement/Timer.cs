@@ -38,6 +38,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
         }
         public void Despawn()
         {
+            _gameProgress.MansionProgress.TryRemoveTimer(SaveableID);
             Destroy(gameObject);
         }
         private TimerSaveData TryLoadProgress(out TimerSaveData data)
@@ -89,6 +90,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
 
         public void SaveProgress(GameProgress progress)
         {
+            if (this == null)
+                return;
             progress.MansionProgress.TryAddTimer(
                 new TimerSaveData(
                     uniqueSaveID: SaveableID,

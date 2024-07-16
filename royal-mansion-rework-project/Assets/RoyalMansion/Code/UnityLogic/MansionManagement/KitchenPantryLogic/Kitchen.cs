@@ -1,4 +1,5 @@
 using RoyalMansion.Code.UnityLogic.NPC;
+using RoyalMasion.Code.Editor;
 using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine;
@@ -13,32 +14,45 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
     public class Kitchen : MansionUnit
     {
         [SerializeField] private KitchenStaticData _unitData;
+        [SerializeField] private ObjectClickHandler _touchHandler;
+        [SerializeField] private Transform _waiterSpawnPoint;
+        [SerializeField] private Transform _cookSpawnPoint;
 
         private List<GuestNPC> _guestsToOrder = new();
+        private WaiterNPC _waiterNPC;
+        private CookNPC _cookNPC;
         private bool _isAbleToCook;
         private bool _inOrderLoop;
 
         private GuestNPC _currentGuest;
 
 
-        private void OnEnable()
+        private void Start()
         {
             InitUnitData(_unitData);
+            SpawnStaff();
             _isAbleToCook = false;
             _inOrderLoop = false;
-            StateMashine.Enter<EmptyState>();
             Subscribe();
         }
+
+
         private void Subscribe()
         {
-            StateMashine.StateChanged += TrackKitchenLoop;
+            _touchHandler.ClickHandled += HandleTouch;
+            StateMachineInitiated += StartTrackingKitchenLoop;
         }
-
 
         private void Unsubscribe()
         {
+            _touchHandler.ClickHandled -= HandleTouch;
+            StateMachineInitiated -= StartTrackingKitchenLoop;
             StateMashine.StateChanged -= TrackKitchenLoop;
         }
+
+        private void StartTrackingKitchenLoop() => 
+            StateMashine.StateChanged += TrackKitchenLoop;
+
         private void HandleTouch()
         {
             StateMashine.Stay();
@@ -59,6 +73,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             if (!_guestsToOrder.Contains(guest))
                 _guestsToOrder.Add(guest);
         }
+        private void SpawnStaff()
+        {
+            _waiterNPC = _npcFactory.SpawnNpc<WaiterNPC>(_waiterSpawnPoint);
+            _cookNPC = _npcFactory.SpawnNpc<CookNPC>(_cookSpawnPoint);
+        }
 
         private bool HasOrders() => 
             _guestsToOrder.Count != 0;
@@ -70,7 +89,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             if (!CheckResources())
                 return;
             _isAbleToCook = true;
-            //если да, разместить UI готовки и разрешить по клику переход в InUseState
             PlaceUI();
         }
         private bool CheckResources()
@@ -95,8 +113,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
 
         private void StartDelivery()
         {
-            WaiterNPC waiter = _npcFactory.SpawnNpc<WaiterNPC>();
-            waiter.SpawnUI();
+            //waiter is already spawned
+            _waiterNPC.SpawnUI();
         }
 
         private void HandleCookCommand()
@@ -109,7 +127,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             RemoveGuestFromOrderList(_currentGuest);
             StateMashine.Enter<InUseState>();
         }
-        private void RemoveGuestFromOrderList(GuestNPC guest)
+        public void RemoveGuestFromOrderList(GuestNPC guest)
         {
             if (_guestsToOrder.Contains(guest))
                 _guestsToOrder.Remove(guest);

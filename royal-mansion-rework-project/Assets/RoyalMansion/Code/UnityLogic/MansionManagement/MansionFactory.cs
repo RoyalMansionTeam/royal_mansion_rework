@@ -55,10 +55,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
                     null);
             }
         }
-        public void RegisterSaveableEntity(ISaveReader reader)
-        {
+        public void RegisterSaveableEntity(ISaveReader reader) => 
             Register(reader);
-        }
+        public void RegisterSaveableEntity(ISaveWriter writer) =>
+            Register(writer);
 
         private async Task<GameObject> InstatiateRegistered(string prefabPath, Vector3 at, Transform parent)
         {
@@ -77,9 +77,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
         private void Register(ISaveReader progressReader)
         {
             if (progressReader is ISaveWriter progressWriter)
-                ProgressWriters.Add(progressWriter);
+                Register(progressWriter);
             ProgressReaders.Add(progressReader);
         }
+        private void Register(ISaveWriter progressWriter) => 
+            ProgressWriters.Add(progressWriter);
 
     }
 }

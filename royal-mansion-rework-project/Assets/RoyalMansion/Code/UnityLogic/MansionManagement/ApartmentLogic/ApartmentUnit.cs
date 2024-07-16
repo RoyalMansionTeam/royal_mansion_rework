@@ -5,7 +5,6 @@ using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
 using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.States;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,15 +15,17 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
     {
         [SerializeField] private ApartmentUnitStaticData _unitData;
         [SerializeField] private ObjectClickHandler _touchHandler;
+        [SerializeField] private List<ApartmentMaterialParents> _materialsData;
 
 
         private UnitFurnitureRequirements[] _basicRequirements;
 
         private void Start()
         {
+            if (_unitData == null)
+                Destroy(this);
             Subscribe();
             InitUnitData(_unitData);
-            //EnterFirstState();
             SetBasicUnitRequirements();
         }
 
@@ -36,20 +37,23 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
         {
             _touchHandler.ClickHandled += HandleAction;
             ItemBoughtEvent += OnItemBought;
+            StateMachineInitiated += ApplyMaterialsData;
         }
+
 
         private void Unsubscribe()
         {
             _touchHandler.ClickHandled -= HandleAction;
             ItemBoughtEvent -= OnItemBought;
+            StateMachineInitiated -= ApplyMaterialsData;
         }
 
-        public void SetBasicUnitRequirements()
+        private void SetBasicUnitRequirements()
         {
-            _basicRequirements = UnitData.BasicRequirements;
+            _basicRequirements = UnitData.GetUnitBasicRequirements();
             if (_basicRequirements.Length == 0)
                 return;
-            foreach (UnitFurnitureRequirements requiredItem in _basicRequirements) //TODO: Chech for saved items
+            foreach (UnitFurnitureRequirements requiredItem in _basicRequirements)
                 requiredItem.Amount = 0;
             BasicUnitRequirementsMet = false;
         }
@@ -61,10 +65,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
             {
                 if (requiredItem.ItemType != itemSection)
                     continue;
-                requiredItem.Amount +=1;
+                requiredItem.Amount += 1;
                 break;
             }
-            BasicUnitRequirementsMet = CheckRequirements();
+            BasicUnitRequirementsMet = _stateMashineData.BasicRequirementsMetState = CheckRequirements();
             if (BasicUnitRequirementsMet)
                 _stateMashineData.BasicRequirementsMet?.Invoke();
         }
@@ -76,6 +80,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
                 if (requiredItem.Amount == 0)
                     requirementsMet = false;
             return requirementsMet;
+        }
+        private void ApplyMaterialsData()
+        {
+            MaterialsData = _materialsData;
+            StateMashine.GetStateMachineData().ApartmentMaterialsData = _materialsData;
         }
 
         private void OnDestroy()

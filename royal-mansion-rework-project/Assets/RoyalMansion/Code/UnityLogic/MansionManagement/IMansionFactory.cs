@@ -14,5 +14,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
         Task<GameObject> CreateUnitObject(string reference, Vector3 at, Transform parent);
         void RegisterSaveableEntity(ISaveReader reader);
         void Cleanup();
+        void RegisterSaveableEntity(ISaveWriter writer);
     }
 }

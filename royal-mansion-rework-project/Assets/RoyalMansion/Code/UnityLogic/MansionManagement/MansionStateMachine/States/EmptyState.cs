@@ -23,27 +23,40 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         public void Enter()
         {
-            SetEmptyApartmentUI();
-            _staticData.BasicRequirementsMet += OnUnitBasicRequirementsMet;
-            if (_staticData.NpcSaveData != null)
-                SpawnNPC(_staticData.NpcSaveData);
+            if (_staticData.UnitData.UnitType == UnitType.Kitchen)
+                return;
+            if (_staticData.BasicRequirementsMetState)
+                OnUnitBasicRequirementsMet();
+            else
+                SetEmptyUnit();
         }
+
+
         public void Stay()
         {
             if (_staticData.UnitData.UnitType != UnitType.Apartment &
                 _staticData.UnitData.UnitType != UnitType.Garden)
                 return;
-            GameObject catalog = _staticData.UiFactory.CreateWindow(WindowID.Catalog);
+            GameObject catalog = _staticData.UiFactory.CreateWindow(WindowID.Catalog, true);
             catalog.GetComponent<CatalogWindow>().SetUnitType(
                 targetType: _staticData.UnitData.UnitType,
                 spawnPoint: _staticData.ItemSpawnPoint,
                 unitID: _staticData.UnitData.UnitID,
-                unitOnBuyEvent: _staticData.ItemBoughtEvent);
+                unitOnBuyEvent: _staticData.ItemBoughtEvent,
+                virtualCameras: _staticData.VirtialCameraData,
+                apartmentMaterialsData: _staticData.ApartmentMaterialsData);
         }
         public void Exit()
         {
-            /*if (_staticData.UnitData.UnitType == UnitType.Apartment)
-                _staticData.SceneContext.Kitchen.AddToOrderList(_npc);*/
+            
+        }
+        private void SetEmptyUnit()
+        {
+            if (_staticData.UnitData.UnitType == UnitType.Apartment)
+                SetEmptyApartmentUI();
+            else if (_staticData.UnitData.UnitType == UnitType.Garden)
+                SetEmptyGardenUI();
+            _staticData.BasicRequirementsMet += OnUnitBasicRequirementsMet;
         }
 
         private void OnUnitBasicRequirementsMet()
@@ -51,9 +64,14 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             if (_staticData.UnitData.UnitType == UnitType.Apartment)
             {
                 SetFurnituredApartmentUI();
-                if (_mansionStateMachine.NPC == null)
+
+                if (_staticData.NpcSaveData != null)
+                    SpawnNPC(_staticData.NpcSaveData);
+                else
                     SpawnNPC();
             }
+            else if (_staticData.UnitData.UnitType == UnitType.Garden)
+                _mansionStateMachine.Enter<InUseState>();
         }
 
         private async void SetFurnituredApartmentUI() =>
@@ -62,6 +80,9 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private async void SetEmptyApartmentUI() =>
             await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
             SetUIMessenge(InternalUnitStates.AwaitingFurniture);
+        private async void SetEmptyGardenUI() =>
+            await _mansionStateMachine.GetStateMachineData().UnitUIHandler.
+            SetUIMessenge(InternalUnitStates.AwaitingSeed);
 
         private void SpawnNPC()
         {

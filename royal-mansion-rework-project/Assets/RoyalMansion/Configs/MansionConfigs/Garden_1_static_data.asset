@@ -22,3 +22,7 @@ MonoBehaviour:
     Reward: 3
     Amount: 20
   _unitType: 1
+  _unitPrice: 0
+  _basicRequirements:
+  - ItemType: 0
+    Amount: 5

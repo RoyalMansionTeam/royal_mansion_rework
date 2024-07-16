@@ -20,6 +20,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
 
         public void Enter()
         {
+            if (_mansionStateMachineData.UnitData.UnitType == UnitType.Kitchen)
+                _mansionStateMachine.Enter<EmptyState>();
             Subscribe();
             OnResourcesChanged(ResourceType.SoftVallue,
                 _mansionStateMachineData.EconomyData.GetEconomyData(ResourceType.SoftVallue));
@@ -67,8 +69,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             if (uiObject == null)
                 return;
             if (uiObject.TryGetComponent(out TextUIHandler textUIHandler))
+            {
                 textUIHandler.SetTextField(_mansionStateMachine.GetStateMachineData().
-                    UnitData.UnitPrice.ToString());
+                      UnitData.UnitPrice.ToString());
+            }
         }
 
         public void Stay()

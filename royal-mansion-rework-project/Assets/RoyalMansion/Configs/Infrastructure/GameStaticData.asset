@@ -41,31 +41,49 @@ MonoBehaviour:
         m_EditorAssetChanged: 1
     - UIState: 3
       PrefabReference:
+        m_AssetGUID: 9b9a18e33cb7c19458d04ed129cf547e
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    - UIState: 4
+      PrefabReference:
         m_AssetGUID: 5f248c231616c7744b0b22411f6ee4f1
         m_SubObjectName: 
         m_SubObjectType: 
-        m_EditorAssetChanged: 1
-    - UIState: 4
+        m_EditorAssetChanged: 0
+    - UIState: 5
       PrefabReference:
         m_AssetGUID: d46a87b1ead5ef446bfc09103323fefb
         m_SubObjectName: 
         m_SubObjectType: 
-        m_EditorAssetChanged: 1
-    - UIState: 5
+        m_EditorAssetChanged: 0
+    - UIState: 6
+      PrefabReference:
+        m_AssetGUID: 9e8cff3f1e0d9cb4ea0f95987af988b6
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    - UIState: 7
       PrefabReference:
         m_AssetGUID: 6071f7ef384c26f468c1c6341503ef6d
         m_SubObjectName: 
         m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    - UIState: 8
+      PrefabReference:
+        m_AssetGUID: 964ae7bcfcfe6e74ca70a9a516b194e2
+        m_SubObjectName: 
+        m_SubObjectType: 
         m_EditorAssetChanged: 1
-    - UIState: 6
+    - UIState: 9
       PrefabReference:
         m_AssetGUID: 3af549c43adbbf0439d331a93ea13799
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 1
-    - UIState: 7
+    - UIState: 10
       PrefabReference:
         m_AssetGUID: 68cffbc88570e6f48bccf90fa1057d85
         m_SubObjectName: 
         m_SubObjectType: 
-        m_EditorAssetChanged: 0
+        m_EditorAssetChanged: 1

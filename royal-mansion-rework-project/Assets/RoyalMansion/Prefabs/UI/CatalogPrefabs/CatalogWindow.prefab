@@ -975,6 +975,7 @@ MonoBehaviour:
   _placementUI: {fileID: 1704439979659476934}
   _placementCancel: {fileID: 6687661531256730080}
   _placementApply: {fileID: 4285774131212940687}
+  _placementRotate: {fileID: 5201747346000149579}
   _areaSwitchers:
   - {fileID: 2213884881951432379}
   - {fileID: 8750089595602274956}

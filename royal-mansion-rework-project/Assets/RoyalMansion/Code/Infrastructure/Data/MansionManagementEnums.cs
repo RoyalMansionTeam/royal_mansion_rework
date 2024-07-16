@@ -13,11 +13,14 @@ namespace RoyalMasion.Code.Infrastructure.Data
         Locked = 0,
         Unlockable = 1,
         AwaitingFurniture = 2,
-        AwaitingGuests = 3,
-        ApartmentStayTimer = 4,
-        Collectable = 5,
-        AwaitingCleaning = 6,
-        CleaningTimer = 7
+        AwaitingSeed = 3,
+        AwaitingGuests = 4,
+        ApartmentStayTimer = 5,
+        GardenTimer = 6,
+        CollectableApartment = 7,
+        CollectableGarden = 8,
+        AwaitingCleaning = 9,
+        CleaningTimer = 10
     }
 
 

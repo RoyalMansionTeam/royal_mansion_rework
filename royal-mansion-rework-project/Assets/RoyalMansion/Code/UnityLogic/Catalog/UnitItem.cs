@@ -1,5 +1,6 @@
 ﻿using RoyalMasion.Code.Extensions;
 using RoyalMasion.Code.Extensions.Utils;
+using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.Infrastructure.Saving;
 using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
 using System;
@@ -12,6 +13,7 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
     {
         public string SaveableID { get; set; }
 
+        private CatalogSection _itemSection;
         private string _unitID;
         private string _assetReference;
 
@@ -21,10 +23,16 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
                 SaveableID = GetComponent<UniqueId>().GenerateId();
         }
 
-        public void SetItemData(string unitID, string assetReference)
+        public void SetItemData(string unitID, string assetReference, CatalogSection itemSection)
         {
             _unitID = unitID;
             _assetReference = assetReference;
+            _itemSection = itemSection;
+        }
+
+        public void Rotate()
+        {
+            transform.rotation *= Quaternion.Euler(0f, 90f, 0f);
         }
 
         public void LoadProgress(GameProgress progress)
@@ -34,12 +42,16 @@ namespace RoyalMansion.Code.UnityLogic.Catalog
 
         public void SaveProgress(GameProgress progress)
         {
+            if (this == null)
+                return;
             progress.MansionProgress.TryAddItem(
                 new CatalogItemSaveData(
                     position: transform.localPosition.AsVectorData(),
                     unitID: _unitID,
                     assetGUID: _assetReference,
-                    uSID: SaveableID
+                    uSID: SaveableID,
+                    catalogSectionID: _itemSection.GetHashCode(),
+                    rotation: transform.rotation.eulerAngles.AsVectorData()
                     )
                 );
         }

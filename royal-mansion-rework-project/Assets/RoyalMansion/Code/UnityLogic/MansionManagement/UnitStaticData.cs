@@ -16,7 +16,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
 
         public UnitType UnitType => _unitType;
         public int UnitPrice => _unitPrice;
-        public UnitFurnitureRequirements[] BasicRequirements => _basicRequirements;
+        //public UnitFurnitureRequirements[] BasicRequirements => _basicRequirements;
         public UnitTaskData GetTaskData(UnitState targetState)
         {
             foreach (var task in _tasks)
@@ -26,7 +26,15 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
             }
             return null;
         }
-
+        public UnitFurnitureRequirements[] GetUnitBasicRequirements()
+        {
+            UnitFurnitureRequirements[] result = new UnitFurnitureRequirements[_basicRequirements.Length];
+            for (int i = 0; i < _basicRequirements.Length; i++)
+                result[i] = new UnitFurnitureRequirements() { 
+                    ItemType = _basicRequirements[i].ItemType, 
+                    Amount = _basicRequirements[i].Amount };
+            return result;
+        }
     }
 
     [Serializable]
