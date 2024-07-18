@@ -35,12 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2b1cc6d9149c7b64f927c1c4a80e0dd7
-    m_Address: NPC_test
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - mansion
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eb4c72bb8243ebf4a819cfc104ac3e2b
     m_Address: Garden_tree_0
     m_ReadOnly: 0
@@ -173,17 +167,10 @@ MonoBehaviour:
     m_SerializedLabels:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1fd641028d24d1d44b7f4ae06569235b
-    m_Address: NPC_waiter_test
+  - m_GUID: 404f39083dc35c740a9f7fb3a7f9a9dc
+    m_Address: Assets/RoyalMansion/Prefabs/NPC/NPC_Waiter.prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - mansion
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5d968236db5ebe145aedbd4ade2e42af
-    m_Address: NPC_cook_test
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - mansion
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d482bf61004ba84ca973f0327b99f34
     m_Address: Bad_013
@@ -573,6 +560,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 54baf62711273884e944870fa752d12d
     m_Address: WALL_TEST
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c662a721e1935424796cd564a063d473
+    m_Address: Assets/RoyalMansion/Prefabs/UI/MansionUnitUIPrefabs/UnitsUIRoot.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9679750119fc2004792cd5dc36aba3e5
+    m_Address: Assets/RoyalMansion/Prefabs/UI/MansionUnitUIPrefabs/UnitUIHandler.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ce3497bd2583174d83c60406f5e123b
+    m_Address: CookTaskUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf2ce4626bb9ea044a674ede404cb439
+    m_Address: PantryUI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -20,7 +20,10 @@ namespace RoyalMasion.Code.Infrastructure.Data
         CollectableApartment = 7,
         CollectableGarden = 8,
         AwaitingCleaning = 9,
-        CleaningTimer = 10
+        CleaningTimer = 10,
+        KitchenReadyToOrder = 11,
+        GuestReadyToOrder = 12,
+        Pantry = 13
     }
 
 
@@ -55,5 +58,11 @@ namespace RoyalMasion.Code.Infrastructure.Data
         Seat = 11, 
         Table = 12, 
         None = 13
+    }
+
+    public enum NpcState
+    {
+        Resting = 0,
+        PerformingTask = 1
     }
 }

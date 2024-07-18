@@ -13,13 +13,15 @@ namespace RoyalMansion.Code.UnityLogic.NPC
     public class NpcBase : MonoBehaviour, ISaveWriter
     {
         public string SaveableID { get; set; }
+
+        [SerializeField] protected NavMeshAgent _agent;
         public string AssignedUnitID;
         public bool FinishedTask = false;
 
-        [SerializeField] protected NavMeshAgent _agent;
 
         private INpcBehaviour _currentBehavior;
         private GameProgress _progress;
+        public INpcBehaviour CurrentBehavior => _currentBehavior;
 
         public void SetProgress(IPersistentProgressService progressService)
         {
@@ -28,12 +30,12 @@ namespace RoyalMansion.Code.UnityLogic.NPC
 
         public void SpawnUI()
         {
-            Debug.Log("Spawn NPC HUD");
+            //Debug.Log("Spawn NPC HUD");
         }
 
         public void DespawnUI()
         {
-            Debug.Log("Despawn NPC HUD");
+            //Debug.Log("Despawn NPC HUD");
         }
 
         protected void EnterBehaviour(INpcBehaviour newBehaviour)

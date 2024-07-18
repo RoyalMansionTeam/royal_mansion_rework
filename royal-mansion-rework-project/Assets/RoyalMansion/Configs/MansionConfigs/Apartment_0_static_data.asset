@@ -18,7 +18,7 @@ MonoBehaviour:
     Time:
       Houres: 0
       Minutes: 0
-      Seconds: 3
+      Seconds: 20
     Reward: 2
     Amount: 40
   - State: 4
@@ -30,10 +30,4 @@ MonoBehaviour:
     Amount: 0
   _unitType: 0
   _unitPrice: 100
-  _basicRequirements:
-  - ItemType: 0
-    Amount: 0
-  _orderMakingTime:
-    Houres: 0
-    Minutes: 0
-    Seconds: 0
+  _basicRequirements: []

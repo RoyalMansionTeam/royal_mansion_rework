@@ -43,7 +43,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.ProjectData
 
         public int TryLoadProgress(ResourceType type)
         {
-            int amount = 2000;
+            int amount = 300;
             if (_progressService.Progress.IngameDataProgress.ResourcesSaveData == null)
                 return amount;
             foreach(Saving.GameResourceSaveData resource in _progressService.Progress.IngameDataProgress.ResourcesSaveData)

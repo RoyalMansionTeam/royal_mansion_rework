@@ -36,7 +36,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
                 return;
             if (_stateMachineData.NpcSaveData != null & _mansionStateMachine.NPC == null)
                 SpawnNPC(_stateMachineData.NpcSaveData);
-            _stateMachineData.SceneContext.Kitchen.AddToOrderList(_npc);
+            _stateMachineData.SceneContext.Kitchen.AddToOrderList(_mansionStateMachine.NPC);
         }
 
         public void Stay()
@@ -45,6 +45,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         public void Exit()
         {
+            _stateMachineData.SceneContext.Kitchen.RemoveFromOrderList(_npc);
             _timer.Despawn();
         }
 

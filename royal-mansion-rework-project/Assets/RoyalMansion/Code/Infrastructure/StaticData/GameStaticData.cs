@@ -7,9 +7,11 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
     {
         [SerializeField] private WindowConfig[] _windowStaticData;
         [SerializeField] private MansionStaticData _mansionStaticData;
+        [SerializeField] private PlaytestStaticData _playtestStaticData;
 
         public WindowConfig[] Windows => _windowStaticData;
         public MansionStaticData MansionStaticData => _mansionStaticData;
+        public PlaytestStaticData PlaytestStaticData => _playtestStaticData; 
     }
 
 }

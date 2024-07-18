@@ -20,7 +20,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
         private float _elapsedTime;
         private float _taskTime;
         private float _taskEndRealime;
-
         public string SaveableID { get; set; }
 
         public void InitProgressService(IPersistentProgressService progressService)
@@ -56,7 +55,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
             return data;
         }
 
-        private void SetNewTimer() => 
+        private void SetNewTimer() =>
             _taskEndRealime = Epoch.Current() + _taskTime;
 
         private void LoadTimer(float savedEndRealtime)
@@ -74,6 +73,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement
 
         private void UpdateTime()
         {
+            
             if (_elapsedTime <= 0)
                 return;
             _elapsedTime -= Time.deltaTime;

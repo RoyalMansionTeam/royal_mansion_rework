@@ -15,6 +15,6 @@ MonoBehaviour:
   _guestPrefabs:
   - {fileID: 6245492615533650368, guid: 03cfa6f2ceae0d4478899a123db2f170, type: 3}
   _waiterPrefabs:
-  - {fileID: 5737941152645718331, guid: 1fd641028d24d1d44b7f4ae06569235b, type: 3}
+  - {fileID: 6245492615533650368, guid: 404f39083dc35c740a9f7fb3a7f9a9dc, type: 3}
   _cookPrefabs:
   - {fileID: 6245492615533650368, guid: 4a7cb0274b798c047a6be2f86827040b, type: 3}
