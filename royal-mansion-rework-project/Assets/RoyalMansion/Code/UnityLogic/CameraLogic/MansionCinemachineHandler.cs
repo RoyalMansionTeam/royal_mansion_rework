@@ -9,6 +9,7 @@ namespace RoyalMansion.Code.UnityLogic.CameraLogic
         [SerializeField] private Camera _mainCamera;
         private CinemachineVirtualCamera _currentVirtualCamera;
 
+        public CinemachineVirtualCamera MainCamera => _mainVirtualCamera;
         private void Start()
         {
             SetMainVirtualCam();

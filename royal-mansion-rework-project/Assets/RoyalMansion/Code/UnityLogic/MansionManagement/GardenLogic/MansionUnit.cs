@@ -38,11 +38,12 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
         protected bool BasicUnitRequirementsMet;
         protected List<ApartmentMaterialParents> MaterialsData;
 
-        [SerializeField] private MansionUnitUIHandler _uiHandler;
         [SerializeField] private Transform _newItemSpawnPoint;
         [SerializeField] private Transform _navmeshTarget;
+        [SerializeField] private Transform _uiAnchorPoint;
         [SerializeField] private UnitVirtualCamerasData _unitCameras;
 
+        private MansionUnitUIHandler _uiHandler;
         private ISceneContextService _sceneContext;
         private IUIFactory _uiFactory;
         private IEconomyDataService _econommyDataService;
@@ -64,8 +65,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
             _assetProvider = assetProvider;
             RegisterSaveableEntity();
         }
-
-
 
         protected void EnterFirstState()
         {
@@ -96,11 +95,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic
             SaveableID = UnitData.UnitID;
         }
 
-        public void NpcEnteredUnitEvent()
+        protected void InitUnitUI()
         {
-            if (StateMashine == null || StateMashine.NPC == null)
-                return;
-            StateMashine.NPC.OnUnitAchieved();
+            _uiHandler = _uiFactory.CreateUnitUIHandler();
+            _uiHandler.SetHandlerData(_uiAnchorPoint.position,
+                _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
         }
 
         private void InitStateMachine()

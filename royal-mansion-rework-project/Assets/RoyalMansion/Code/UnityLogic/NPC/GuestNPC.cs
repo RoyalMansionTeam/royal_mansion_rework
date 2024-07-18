@@ -1,4 +1,5 @@
 ﻿using RoyalMansion.Code.UnityLogic.NPC.NpcBehaviour;
+using RoyalMasion.Code.Infrastructure.Data;
 using System;
 using UnityEngine;
 
@@ -14,7 +15,8 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             _allowToMove = true;
             EnterBehaviour(new BasicMovingBehaviour(
                 agent: _agent,
-                target: destination
+                target: destination,
+                state: NpcState.PerformingTask
                 ));
         }
         public void OnUnitAchieved()

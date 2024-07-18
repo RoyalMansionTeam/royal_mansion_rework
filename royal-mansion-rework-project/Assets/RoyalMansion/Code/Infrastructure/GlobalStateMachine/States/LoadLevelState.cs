@@ -49,11 +49,10 @@ namespace RoyalMasion.Code.Infrastructure.StateMachine.States
             _sceneLoader.LoadScene(sceneIndex, OnLoaded);
         }
 
-        private async void OnLoaded()
+        private void OnLoaded()
         {
-            _uiFactory.ClearUIRoot();
+            //_uiFactory.ClearUIRoot();
             SpawnPlayer();
-            //await InitNPCFactory();
             ApplyProgressOnLevel();
 
             _gameStateMachine.Enter<GameLoopState>();
@@ -62,7 +61,7 @@ namespace RoyalMasion.Code.Infrastructure.StateMachine.States
         private void ApplyProgressOnLevel() => 
             _saveLoadService.ApplyProgress();
 
-        private async Task InitNPCFactory() =>
+        private async void InitNPCFactory() =>
             await _npcFactory.SetNpcFactory();
 
         private void SpawnPlayer()

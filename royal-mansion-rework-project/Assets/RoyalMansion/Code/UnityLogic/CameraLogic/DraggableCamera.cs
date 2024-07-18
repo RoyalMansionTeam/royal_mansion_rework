@@ -9,6 +9,7 @@ namespace RoyalMansion.Code.UnityLogic.CameraLogic
         [SerializeField] private Bounds _draggableArea;
 
         public float dragSpeed = .1f;
+        public Action CameraPositionChanged;
 
         private Vector3 dragOrigin, _cameraPosition;
         private bool _enableDrag;
@@ -49,6 +50,7 @@ namespace RoyalMansion.Code.UnityLogic.CameraLogic
             _cameraPosition = _draggableArea.Contains(newWorldPoint) ?
                 _cameraPosition : Vector3.zero;
             transform.Translate(_cameraPosition, Space.World);
+            CameraPositionChanged?.Invoke();
         }
         private void Zoom()
         {

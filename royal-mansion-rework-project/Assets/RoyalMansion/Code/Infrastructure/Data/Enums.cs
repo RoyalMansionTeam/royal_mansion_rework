@@ -4,7 +4,9 @@ namespace RoyalMasion.Code.Infrastructure.Data
     {
         UiRoot = 0,
         MansionHUD = 1,
-        Catalog = 2
+        Catalog = 2,
+        MansionUnitsUI = 3,
+        MansionUnitsUIRoot = 4
     }
 
     public enum SceneID

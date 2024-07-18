@@ -1,3 +1,4 @@
+using RoyalMasion.Code.Infrastructure.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,17 @@ namespace RoyalMansion.Code.UnityLogic.NPC.NpcBehaviour
     {
         private readonly NavMeshAgent _agent;
         private readonly Transform _target;
+        private readonly NpcState _state;
 
-        public BasicMovingBehaviour(NavMeshAgent agent, Transform target)
+        public NpcState State => _state;
+        public BasicMovingBehaviour(NavMeshAgent agent, Transform target, NpcState state)
         {
             _agent = agent;
             _target = target;
+            _state = state;
         }
+
+
         public void Enter()
         {
             _agent.isStopped = false;

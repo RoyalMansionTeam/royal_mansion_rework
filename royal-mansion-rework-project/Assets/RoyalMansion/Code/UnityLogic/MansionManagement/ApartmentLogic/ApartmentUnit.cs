@@ -1,4 +1,5 @@
 using RoyalMansion.Code.Extensions.Utils;
+using RoyalMansion.Code.UnityLogic.NPC;
 using RoyalMasion.Code.Editor;
 using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
@@ -27,6 +28,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
             Subscribe();
             InitUnitData(_unitData);
             SetBasicUnitRequirements();
+            InitUnitUI();
         }
 
         private void HandleAction()
@@ -46,6 +48,15 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic
             _touchHandler.ClickHandled -= HandleAction;
             ItemBoughtEvent -= OnItemBought;
             StateMachineInitiated -= ApplyMaterialsData;
+        }
+
+        public void NpcEnteredUnitEvent(NpcBase npc)
+        {
+            if (npc.AssignedUnitID != UnitData.UnitID)
+                return;
+            if (StateMashine == null || StateMashine.NPC == null)
+                return;
+            StateMashine.NPC.OnUnitAchieved();
         }
 
         private void SetBasicUnitRequirements()

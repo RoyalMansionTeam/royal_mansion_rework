@@ -48,7 +48,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         public void Exit()
         {
-            
+            _npc.UnitAchived -= OnNPCWalkEnd;
         }
         private void SetEmptyUnit()
         {

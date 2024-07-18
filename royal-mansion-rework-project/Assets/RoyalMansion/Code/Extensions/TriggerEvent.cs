@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RoyalMansion.Code.UnityLogic.NPC;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace RoyalMasion.Code.Editor
@@ -7,13 +8,16 @@ namespace RoyalMasion.Code.Editor
     public class TriggerEvent : MonoBehaviour
     {
         [System.Serializable]
-        public class TriggerEnteredEvent : UnityEvent { }
+        public class TriggerEnteredEvent : UnityEvent<NpcBase> { }
 
-        public TriggerEnteredEvent _onTriggerEntered = new();
+        [SerializeField] public TriggerEnteredEvent _onTriggerEntered = new();
 
         private void OnTriggerEnter(Collider other)
         {
-            _onTriggerEntered?.Invoke(); 
+            if (other.gameObject.TryGetComponent(out NpcBase npc))
+            {
+                _onTriggerEntered?.Invoke(npc);
+            }
         }
     }
 
