@@ -71,7 +71,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
         {
             if (type != pantry_resource_type)
                 return;
-            Debug.Log(currentAmount / (float)_pantryCapacity);
             string percentMessenge = (currentAmount / (float)_pantryCapacity * 100).ToString();
             _textHandler.SetTextField(percentMessenge);
         }

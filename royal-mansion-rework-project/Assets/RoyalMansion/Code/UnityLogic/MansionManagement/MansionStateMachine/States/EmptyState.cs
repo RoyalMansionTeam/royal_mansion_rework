@@ -15,6 +15,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private IMansionStateMachine _mansionStateMachine;
         private MansionStateMachineData _staticData;
         private GuestNPC _npc;
+        private GameObject _catalog;
 
         public void SetupStateMachine(IMansionStateMachine gameStateMachine)
         {
@@ -37,8 +38,10 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             if (_staticData.UnitData.UnitType != UnitType.Apartment &
                 _staticData.UnitData.UnitType != UnitType.Garden)
                 return;
-            GameObject catalog = _staticData.UiFactory.CreateWindow(WindowID.Catalog, true);
-            catalog.GetComponent<CatalogWindow>().SetUnitType(
+            if (_catalog != null)
+                return;
+            _catalog = _staticData.UiFactory.CreateWindow(WindowID.Catalog, true);
+            _catalog.GetComponent<CatalogWindow>().SetUnitType(
                 targetType: _staticData.UnitData.UnitType,
                 spawnPoint: _staticData.ItemSpawnPoint,
                 unitID: _staticData.UnitData.UnitID,
@@ -48,6 +51,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         public void Exit()
         {
+            _catalog = null;
             _npc.UnitAchived -= OnNPCWalkEnd;
         }
         private void SetEmptyUnit()

@@ -47,12 +47,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f924cf3fa2ed8a4f9a41c4745a312c2
-    m_Address: Apartment_bath_0
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - mansion
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a62ff20c9321a1f468cfa7b62ba2eba0
     m_Address: ApartmentCatalogConfig
     m_ReadOnly: 0
@@ -65,11 +59,10 @@ MonoBehaviour:
     m_SerializedLabels:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f10d143f9da7b624eb9ea03e29f4384d
+  - m_GUID: ed7348e0ea2badc459a6ec90b12a01fe
     m_Address: CatalogItemUI
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - mansion
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e93f275ea5f17014cb190445ff342a97
     m_Address: GardenCatalogConfig
@@ -168,7 +161,7 @@ MonoBehaviour:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 404f39083dc35c740a9f7fb3a7f9a9dc
-    m_Address: Assets/RoyalMansion/Prefabs/NPC/NPC_Waiter.prefab
+    m_Address: NPC_Waiter
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -493,52 +486,52 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 641469db104d89f43b7c8947b69177f4
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_001 1.prefab
+    m_Address: OB_Tree_001 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7560d04741686114f86a9566551839a8
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Flower_Bloom_02.prefab
+    m_Address: OB_Flower_Bloom_02
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e40eadbba6e88d0488a1369ea76d3b7c
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Flower_004.prefab
+    m_Address: OB_Flower_004
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36454bd44b161b840967d9177b91cd59
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Flower_002.prefab
+    m_Address: OB_Flower_002
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0c703349f265f1459d0b64fe49dc473
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Flower_Bloom_01.prefab
+    m_Address: OB_Flower_Bloom_01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a0c96b0011420384e91b1ddab915df67
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_001.prefab
+    m_Address: OB_Tree_001
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 534d58a0b010dd648a2a3e319da08904
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_004.prefab
+    m_Address: OB_Tree_004
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de206d656ec7bed49afe28f628b74516
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_005.prefab
+    m_Address: OB_Tree_005
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 129c3f6ef1b4c2f4c830fc1e489e190f
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_008.prefab
+    m_Address: OB_Tree_008
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3d43074b65b0b1140b5f52ccf096539a
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Garden/OB_Tree_006.prefab
+    m_Address: OB_Tree_006
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -549,7 +542,7 @@ MonoBehaviour:
     - mansion
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fb3e6f3bab41a846bc76a2b6980faf3
-    m_Address: Assets/RoyalMansion/Prefabs/Mansion/Models/Furniture/BedPrefabs/Bed_02.prefab
+    m_Address: Bed_02
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -564,12 +557,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c662a721e1935424796cd564a063d473
-    m_Address: Assets/RoyalMansion/Prefabs/UI/MansionUnitUIPrefabs/UnitsUIRoot.prefab
+    m_Address: UnitsUIRoot
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9679750119fc2004792cd5dc36aba3e5
-    m_Address: Assets/RoyalMansion/Prefabs/UI/MansionUnitUIPrefabs/UnitUIHandler.prefab
+    m_Address: UnitUIHandler
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -580,6 +573,421 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf2ce4626bb9ea044a674ede404cb439
     m_Address: PantryUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87ac1450e1b2d494187616bb0f26748b
+    m_Address: WallMaterial_26
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46e67c2e2592e5a429eab2e93332763a
+    m_Address: WallMaterial_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd56f00432cdb1847bff62e99c1cb65e
+    m_Address: WallMaterial_32
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e076d7cf95ebedf44872a9c8c56c7f23
+    m_Address: WallMaterial_24
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e172f2a9d01370140a2346e752fa60e0
+    m_Address: WallMaterial_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cab7bbdac8086464da92945cda186334
+    m_Address: WallMaterial_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0a1d1e29e897a744bc3f7b2d4fac853
+    m_Address: WallMaterial_27
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b6b06d63c787e945b3203baaffcfe99
+    m_Address: WallMaterial_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca4d4a1a19bcc894d9e0c854108924d6
+    m_Address: WallMaterial_34
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b923d50f79d9d164e851b86f8a11da8c
+    m_Address: WallMaterial_25
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44a1585b70fd3354183e18ee771bc944
+    m_Address: WallMaterial_28
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad8ccc7406a637e4999401f4e53117b4
+    m_Address: WallMaterial_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 062526b0f8a111d42a1f0702b622ab41
+    m_Address: WallMaterial_23
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a06547aa952a9b74fbc3a3c29300a3e3
+    m_Address: WallMaterial_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 923477c3f5e2f92479235d565df4b66c
+    m_Address: WallMaterial_21
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d018b882d0ca3db41b8ca16b8e5721cc
+    m_Address: WallMaterial_22
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 991915b334d389149a5ada1dfb427304
+    m_Address: WallMaterial_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d10ed64b25bd77b4b8f025fe92e5a7f8
+    m_Address: WallMaterial_31
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 347e3390c8d7d214f81d8d6fa639233b
+    m_Address: WallMaterial_9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0136f008c3491864798eb4506180f5bb
+    m_Address: WallMaterial_33
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f27c58296ec23d74b847d531ab265b69
+    m_Address: WallMaterial_15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 728177d222039e1429a2e63760dfc1cb
+    m_Address: WallMaterial_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2791cb40d545e6440b04985a584a6805
+    m_Address: WallMaterial_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 239fd02534506624e897d617719996cd
+    m_Address: WallMaterial_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 371f48608d07e0745ab174e0f103fc9e
+    m_Address: WallMaterial_30
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61e0651da4fec1745b0f7dfdcaae04d9
+    m_Address: WallMaterial_20
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c120cc27322d2f1499ffe432b1d765ab
+    m_Address: WallMaterial_35
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c55e3a28aa4da754db0ca6f5b0bd12b4
+    m_Address: WallMaterial_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fc56c6996646a040b72b641ffc47e9f
+    m_Address: WallMaterial_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88d78855c4775b345ac99a7e4615dbc4
+    m_Address: WallMaterial_29
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d444dfa09d782954386c9fcf4eb6743a
+    m_Address: WallMaterial_51
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e152cc3933bebb49bf606b6fd5f7eb2
+    m_Address: WallMaterial_41
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eea24bb5829ac1349b4aaea679a169d7
+    m_Address: WallMaterial_45
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dce0d81caea4824f816efd6db2eb60e
+    m_Address: WallMaterial_48
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bdd37e2cc1b3954aa2c0db08ebd1761
+    m_Address: WallMaterial_52
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf4c8715dd52fcd4999054c1b267ad59
+    m_Address: WallMaterial_38
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf9ec20b72036494da24bc640536ed0e
+    m_Address: WallMaterial_39
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17299773b5757ec479d9bedae101f7cf
+    m_Address: WallMaterial_43
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df5a242097a30bb4eaebfd495c32d905
+    m_Address: WallMaterial_42
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea683d7f1475c734d850d08efebc7504
+    m_Address: WallMaterial_55
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91a035032fb1f87459f305efaf2ac156
+    m_Address: WallMaterial_47
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce626f77a9f6a0140badad86e60a4ad8
+    m_Address: WallMaterial_46
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87dc558dd6c8c544e8173af3b487b122
+    m_Address: WallMaterial_49
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a43aaba1a2097b54597fcae0d398286b
+    m_Address: WallMaterial_37
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c37b3869cecf154aa36eb9946d6ebf5
+    m_Address: WallMaterial_53
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e34ea798304e5e4f9c2b39f7678bf1c
+    m_Address: WallMaterial_50
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82efd8191ebbefa45af4b7f735f8b334
+    m_Address: WallMaterial_44
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 473b71edda0cd5547932c823e4ffb103
+    m_Address: WallMaterial_40
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 01ed4ba4ed722b5478ea02b420680e85
+    m_Address: WallMaterial_54
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd2a4cb3e3563704784abef5650f2d72
+    m_Address: Bed_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a6d517fe9e17a3449bad38386ed10d8
+    m_Address: FloorMaterial_21
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 306c8a7f095ff844088bbb53892dd678
+    m_Address: FloorMaterial_22
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84cf8ccabb2687b4a8ec62e5d41939c7
+    m_Address: FloorMaterial_24
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 326665a09b171034bbfdbce0eb68cecb
+    m_Address: FloorMaterial_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d93b2f69887d1144a863456d5423b0b
+    m_Address: FloorMaterial_25
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 507f085c3ad83914482ef5f8ac48b7dd
+    m_Address: FloorMaterial_33
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e618822c5ddf7d4fa354173fcdf0073
+    m_Address: FloorMaterial_29
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 815c1b3810653134a8bc3d37bf68e320
+    m_Address: FloorMaterial_30
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adb38c9e0c4213844b066354c8b3d3e6
+    m_Address: FloorMaterial_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c81abf6f408dd340b26a71cf7c37834
+    m_Address: FloorMaterial_28
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 016b45b9cdeb055479de296b13ce1983
+    m_Address: FloorMaterial_31
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 161e3bbeaaf216541ab58c34abba96c9
+    m_Address: FloorMaterial_27
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0be59c4259abef4eba9a6a142c0aed7
+    m_Address: FloorMaterial_32
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f2b22997b5a61c4cb04bf76234f042f
+    m_Address: FloorMaterial_20
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a5d67b74a2b88340a8ae961a8a6e460
+    m_Address: FloorMaterial_23
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c6860052fe017d4ebcf426377f56967
+    m_Address: FloorMaterial_26
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 179696bc335fb8d4a81c8f50ef6a05b1
+    m_Address: FloorMaterial_34
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1d862fe9b03c5d45adbc423be342c92
+    m_Address: FloorMaterial_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f47fa324cc7f5e4d981405d20c16339
+    m_Address: FloorMaterial_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 310d992afa82c6245805c56c1fea3bcc
+    m_Address: FloorMaterial_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 649a34c8476bfbb488b102096e0e03a7
+    m_Address: FloorMaterial_17
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ee9ce8fb35795f40ac60734be476cd5
+    m_Address: FloorMaterial_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3fd76951045cdf44a6a620b210fe592
+    m_Address: FloorMaterial_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9373f36e98dcbb40b84e2f3411f4b55
+    m_Address: FloorMaterial_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 641fab20fc9349e45a5b60b3dc295530
+    m_Address: FloorMaterial_7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 010650dada7974c40b027eb381bfb985
+    m_Address: FloorMaterial_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 495697517fff6284591c022c62fbcba6
+    m_Address: FloorMaterial_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d59fba7995702be4fb1921f4c096b44b
+    m_Address: FloorMaterial_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bef5ab538146874495a836980016f68
+    m_Address: FloorMaterial_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2703f99634c6f248aee2dc0406d1b41
+    m_Address: FloorMaterial_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eaee4e22f7a16454bb720cd2607f2688
+    m_Address: FloorMaterial_16
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f78bdd66637b912499222757c21a17dd
+    m_Address: FloorMaterial_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 249610c744eb8644bbb735545b1dbf7a
+    m_Address: FloorMaterial_9
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

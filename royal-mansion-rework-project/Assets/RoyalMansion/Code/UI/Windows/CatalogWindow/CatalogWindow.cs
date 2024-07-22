@@ -244,7 +244,6 @@ namespace RoyalMansion.Code.UI.Windows.Catalog
                 return;
             foreach (ApartmentMaterialParents apartmentMaterials in _apartmentMaterialsData)
             {
-                Debug.Log(apartmentMaterials.AreaType);
                 if (apartmentMaterials.AreaType != _currentApartmentArea)
                     continue;
                 Material loadedMaterial = await _assetProvider.Load<Material>

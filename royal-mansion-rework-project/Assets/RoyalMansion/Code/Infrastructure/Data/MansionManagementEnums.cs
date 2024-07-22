@@ -57,7 +57,10 @@ namespace RoyalMasion.Code.Infrastructure.Data
         Tree = 10, 
         Seat = 11, 
         Table = 12, 
-        None = 13
+        None = 13,
+        Sink = 14,
+        Clock = 15,
+        Vase = 16
     }
 
     public enum NpcState

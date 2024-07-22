@@ -20,7 +20,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
 {
     public class Kitchen : MonoBehaviour
     {
-        [SerializeField] private KitchenStaticData _unitData;
         [SerializeField] private ObjectClickHandler _touchHandler;
         [SerializeField] private Transform _waiterSpawnPoint;
         [SerializeField] private Transform _cookSpawnPoint;
@@ -29,7 +28,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
         private List<WaiterNPC> _waiterNPCs = new();
         private List<CookNPC> _cookNPCs = new();
         private bool _isAbleToCook;
-        private bool _inOrderLoop;
 
         private GuestNPC _currentGuest;
         private INpcFactory _npcFactory;
@@ -63,7 +61,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
         private void Start()
         {
             _isAbleToCook = false;
-            _inOrderLoop = false;
             Subscribe();
         }
 
