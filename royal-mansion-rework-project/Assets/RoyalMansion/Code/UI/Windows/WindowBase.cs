@@ -18,26 +18,7 @@ namespace RoyalMasion.Code.UI.Windows
                 CloseButton.onClick.AddListener(CloseWindow);
         }
 
-        private void Start()
-        {
-            Initialize();
-            SubscribeUpdates();
-            LoadStartupData();
-        }
-
-        protected virtual void Initialize()
-        {
-        }
-
-        protected virtual void SubscribeUpdates()
-        {
-        }
-
-        protected virtual void LoadStartupData()
-        {
-        }
-
-        protected virtual void CloseWindow()
+        public virtual void CloseWindow()
         {
             Destroy(gameObject);
         }

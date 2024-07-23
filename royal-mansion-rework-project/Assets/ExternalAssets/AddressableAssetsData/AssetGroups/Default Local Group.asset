@@ -991,6 +991,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82e5b1255bc02444dadb10584d04ec1e
+    m_Address: DailyMessagePopUpWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed8b5f7573559d047ad9d1813663e07b
+    m_Address: MetaMessagesConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 516a9bf27ab45484986f3052a82b9a3a, type: 2}
   m_SchemaSet:

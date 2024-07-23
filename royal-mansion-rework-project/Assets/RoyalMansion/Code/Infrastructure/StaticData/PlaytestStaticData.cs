@@ -1,4 +1,5 @@
 ﻿using RoyalMansion.Code.Extensions.Utils;
+using RoyalMasion.Code.Infrastructure.Data;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
         [SerializeField] public int CookNumber;
         [SerializeField] public int PantryCapacity;
         [SerializeField] public KitchenOrderData TestOrderData;
+        [SerializeField] public ResourceType DailyMessagesRewardType;
+        [SerializeField] public int DailyMessagesRewardAmount;
     }
 
     [Serializable]

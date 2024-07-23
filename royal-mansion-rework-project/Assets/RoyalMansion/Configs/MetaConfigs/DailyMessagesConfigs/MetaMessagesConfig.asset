@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008ea4e6eccbf3844a6e4218e73e99e4, type: 3}
+  m_Name: MetaMessagesConfig
+  m_EditorClassIdentifier: 
+  DailyMessages:
+  - SequenceID: One
+    Messages:
+    - {fileID: 11400000, guid: fa9cfb2433b893a48871f876f0daa967, type: 2}
+    - {fileID: 11400000, guid: f8fee74afc360dc4fa2a39b75704c797, type: 2}
+    - {fileID: 11400000, guid: 57ce862620f0b6b4aa22ac406b7acdd2, type: 2}
+    - {fileID: 11400000, guid: e02d1c800ef7d304088d97be6239bbfb, type: 2}
+    SequenceRead: 0
+    ClaimedDateTime: 
+  - SequenceID: Two
+    Messages:
+    - {fileID: 11400000, guid: c38a32cb39ca75b479725dd6ef4e0fb9, type: 2}
+    - {fileID: 11400000, guid: 5499204a724faff4eb151532ddfa95ef, type: 2}
+    - {fileID: 11400000, guid: 5c060d6fd9be7f0438b2a1f2ea92168a, type: 2}
+    - {fileID: 11400000, guid: 3537eb5966c15e046879b2a32fed08fb, type: 2}
+    - {fileID: 11400000, guid: 21d8c718cd4360344b72048bf8319d57, type: 2}
+    SequenceRead: 0
+    ClaimedDateTime: 

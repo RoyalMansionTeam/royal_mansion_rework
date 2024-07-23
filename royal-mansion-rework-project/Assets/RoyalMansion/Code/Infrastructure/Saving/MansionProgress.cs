@@ -12,6 +12,7 @@ namespace RoyalMasion.Code.Infrastructure.Saving
         public List<MansionUnitSaveData> MansionUnitsSave;
         public List<TimerSaveData> TimerSaveData;
         public List<NpcSaveData> NpcSaveData;
+        public List<DailyMessagesSaveData> DailyMessagesSaveDatas;
 
         public void TryAddItem(CatalogItemSaveData targetItem)
         {
@@ -116,6 +117,25 @@ namespace RoyalMasion.Code.Infrastructure.Saving
                     return;
                 }
             }
+        }
+        public void TryAddMetaMessage(DailyMessagesSaveData targetMessageData)
+        {
+            if (DailyMessagesSaveDatas == null)
+            {
+                DailyMessagesSaveDatas = new();
+                DailyMessagesSaveDatas.Add(targetMessageData);
+                return;
+            }
+            for (int i = 0; i < DailyMessagesSaveDatas.Count; i++)
+            {
+                DailyMessagesSaveData messageData = DailyMessagesSaveDatas[i];
+                if (messageData.UniqueSaveID == targetMessageData.UniqueSaveID)
+                {
+                    DailyMessagesSaveDatas[i] = targetMessageData;
+                    return;
+                }
+            }
+            DailyMessagesSaveDatas.Add(targetMessageData);
         }
     }
 }

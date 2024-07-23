@@ -11,7 +11,7 @@ using VContainer;
 
 namespace RoyalMansion.Code.UI.Windows.HUD
 {
-    public class MoneyFIeldUI : MonoBehaviour
+    public class MoneyFieldUI : MonoBehaviour
     {
         private const ResourceType targetResourceType = ResourceType.SoftVallue;
 
