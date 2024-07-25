@@ -1,5 +1,6 @@
 using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.ContextObjects.MansionContext;
+using RoyalMansion.Code.UnityLogic.DailyRewards;
 using RoyalMansion.Code.UnityLogic.Meta;
 using RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic;
 using System;
@@ -13,5 +14,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         public Kitchen Kitchen { get; set; }
         public MansionCinemachineHandler CinemachineHandler { get; set; }
         public DailyMessagesHandler MetaMessagesHandler { get; set; }
+        public DailyRewardService DailyRewardService { get; set; }
     }
 }

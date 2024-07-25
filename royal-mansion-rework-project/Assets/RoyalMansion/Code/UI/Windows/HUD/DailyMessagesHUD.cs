@@ -1,4 +1,5 @@
-﻿using RoyalMansion.Code.UnityLogic.Meta;
+﻿using RoyalMansion.Code.Extensions;
+using RoyalMansion.Code.UnityLogic.Meta;
 using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.Infrastructure.Services.SceneContext;
 using RoyalMasion.Code.Infrastructure.Services.UIFactory;
@@ -17,6 +18,7 @@ namespace RoyalMansion.Code.UI.Windows.HUD
 
         private IUIFactory _uiFactory;
         private DailyMessagesHandler _messageHandler;
+        private ISceneContextService _sceneContext;
         private DailyMessageData _currentMessageSequence;
         private DailyMessagesPopUpWindow _popupWindow;
 
@@ -25,6 +27,7 @@ namespace RoyalMansion.Code.UI.Windows.HUD
         {
             _uiFactory = uiFactory;
             _messageHandler = sceneContext.MetaMessagesHandler;
+            _sceneContext = sceneContext;
         }
 
         private void Start()
@@ -59,7 +62,7 @@ namespace RoyalMansion.Code.UI.Windows.HUD
             if (_popupWindow == null)
                 return;
             _currentMessageSequence.SequenceRead = true;
-            _currentMessageSequence.ClaimedDateTime = DateTime.UtcNow.ToLongDateString();
+            _currentMessageSequence.ClaimedDateTime = (int)Epoch.CurrentRelativeTime(_sceneContext.DailyRewardService.CurrentEpoch.EpochStartDateTime.ToDateTime());
             _popupWindow.ReachedLastState -= OnReachedLastMessageState;
             _popupWindow = null;
         }

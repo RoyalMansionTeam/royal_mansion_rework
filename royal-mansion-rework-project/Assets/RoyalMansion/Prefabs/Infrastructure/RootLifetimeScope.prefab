@@ -248,6 +248,7 @@ Transform:
   - {fileID: 6211568954924817111}
   - {fileID: 6797839593821805677}
   - {fileID: 6767679826012554226}
+  - {fileID: 1489349919681266136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6539170068967392610
@@ -271,6 +272,7 @@ MonoBehaviour:
   _sceneLoaderPrefab: {fileID: 877954533828174359}
   _gameBootstraperPrefab: {fileID: 1706982089139249680}
   _eventSystemPrefab: {fileID: 2840020820471185815}
+  _projectTimeTracker: {fileID: 7896212987135499619}
 --- !u!1 &5798670121765991564
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,3 +450,47 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7896212987135499619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489349919681266136}
+  - component: {fileID: 3288127243080523848}
+  m_Layer: 0
+  m_Name: ProjectTimeTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1489349919681266136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896212987135499619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 766146589845607526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3288127243080523848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896212987135499619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3f0316b49d3a449a29207a4a59887f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

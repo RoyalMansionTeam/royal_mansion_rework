@@ -17,5 +17,6 @@ namespace RoyalMasion.Code.Extensions
 
         public static T ToDeserialized<T>(this string json) =>
           JsonUtility.FromJson<T>(json);
+
     }
 }

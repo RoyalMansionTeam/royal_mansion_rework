@@ -6,8 +6,8 @@ namespace RoyalMasion.Code.Infrastructure.Saving
     public class DailyMessagesSaveData : MansionSaveableCategory
     {
         public bool SequenceRead;
-        public string ClaimedDateTime;
-        public DailyMessagesSaveData(string uniqueSaveID, bool seuenceRead, string claimedDateTime)
+        public int ClaimedDateTime;
+        public DailyMessagesSaveData(string uniqueSaveID, bool seuenceRead, int claimedDateTime)
         {
             UniqueSaveID = uniqueSaveID;
             SequenceRead = seuenceRead;

@@ -1,5 +1,8 @@
-﻿using RoyalMasion.Code.Infrastructure.Saving;
+﻿using RoyalMansion.Code.Extensions;
+using RoyalMansion.Code.UnityLogic.DailyRewards;
+using RoyalMasion.Code.Infrastructure.Saving;
 using RoyalMasion.Code.Infrastructure.Services.AssetProvider;
+using RoyalMasion.Code.Infrastructure.Services.ProjectData;
 using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
 using RoyalMasion.Code.Infrastructure.Services.StaticData;
 using RoyalMasion.Code.UnityLogic.MasionManagement;
@@ -16,27 +19,47 @@ namespace RoyalMansion.Code.UnityLogic.Meta
         public string SaveableID { get; set; }
         public Action<DailyMessageData> AvailableMessageFound;
 
+        [SerializeField] private DailyRewardService _rewardService;
+
         private IAssetProvider _assetProvider;
         private IMansionFactory _mansionFactory;
         private IStaticDataService _staticData;
+        private ProjectTimeTracker _timeTracker;
+
         private DailyMessagesConfig _messagesConfig;
+        private int _nextMessageID;
 
-
-        //Load configs - DONE
-        //Load save data ?and apply to config?
-        //check if already checked in
-        //get today message if available and invoke corr. event
-        //event is listened from FailyMessagesHUD by SceneContext
 
         [Inject]
         public void Construct(IAssetProvider assetProvider, IMansionFactory mansionFactory,
-            IStaticDataService staticData)
+            IStaticDataService staticData, ProjectTimeTracker timeTracker)
         {
             _assetProvider = assetProvider;
             _mansionFactory = mansionFactory;
             _staticData = staticData;
+            _timeTracker = timeTracker;
             RegisterSaveableEntity();
-            Debug.Log("Register");
+        }
+
+        private void Start()
+        {
+            Subscribe();
+        }
+
+        private void Subscribe()
+        {
+            _timeTracker.ChangedDay += OnDayChanged;
+        }
+
+        private void OnDayChanged()
+        {
+            if (_nextMessageID >= _messagesConfig.DailyMessages.Count)
+                return;
+            if (_nextMessageID != 0)
+                if (!_messagesConfig.DailyMessages[_nextMessageID - 1].SequenceRead)
+                    return;
+            AvailableMessageFound?.Invoke(_messagesConfig.DailyMessages[_nextMessageID]);
+            _nextMessageID++;
         }
 
         public void LoadProgress(GameProgress progress)
@@ -51,7 +74,7 @@ namespace RoyalMansion.Code.UnityLogic.Meta
                 return;
             foreach (DailyMessageData messageSequence in _messagesConfig.DailyMessages)
             {
-                progress.MansionProgress.TryAddMetaMessage(new DailyMessagesSaveData(
+                progress.IngameDataProgress.TryAddMetaMessage(new DailyMessagesSaveData(
                     uniqueSaveID: messageSequence.SequenceID,
                     seuenceRead: messageSequence.SequenceRead,
                     claimedDateTime: messageSequence.ClaimedDateTime
@@ -63,14 +86,14 @@ namespace RoyalMansion.Code.UnityLogic.Meta
             await LoadConfig();
             if (_messagesConfig == null)
                 return;
-            if (progress == null || progress.MansionProgress.DailyMessagesSaveDatas == null)
+            if (progress == null || progress.IngameDataProgress.DailyMessagesSaveDatas == null)
             {
                 TrySetDailyMessage();
                 return;
             }
             foreach (DailyMessageData messageSequence in _messagesConfig.DailyMessages)
             {
-                foreach (DailyMessagesSaveData savedMessage in progress.MansionProgress.DailyMessagesSaveDatas)
+                foreach (DailyMessagesSaveData savedMessage in progress.IngameDataProgress.DailyMessagesSaveDatas)
                 {
                     if (savedMessage.UniqueSaveID != messageSequence.SequenceID)
                         continue;
@@ -91,6 +114,7 @@ namespace RoyalMansion.Code.UnityLogic.Meta
             DailyMessageData lastMessageSequence = null;
             for(int i = _messagesConfig.DailyMessages.Count-1; i>=0; i--)
             {
+                _nextMessageID = i + 1;
                 DailyMessageData messageSequence = _messagesConfig.DailyMessages[i];
                 if (i == 0 || messageSequence.SequenceRead)
                 {
@@ -109,39 +133,26 @@ namespace RoyalMansion.Code.UnityLogic.Meta
                     return;
                 }
             }
-            /*foreach (DailyMessageData messageSequence in _messagesConfig.DailyMessages)
-            {
-                if (messageSequence.SequenceRead)
-                {
-                    lastMessageSequence = messageSequence;
-                    continue;
-                }
-                if (lastMessageSequence == null)
-                {
-                    AvailableMessageFound?.Invoke(messageSequence);
-                    return;
-                }
-                if (IsTodaysMessage(lastMessageSequence.ClaimedDateTime))
-                {
-                    AvailableMessageFound?.Invoke(lastMessageSequence);
-                    return;
-                }
-                AvailableMessageFound?.Invoke(messageSequence);
-                return;
-            }*/
         }
 
-        private bool IsTodaysMessage(string claimedDateTime)
+        private bool IsTodaysMessage(int claimedDateTime)
         {
-            if (DateTime.TryParse(claimedDateTime, out DateTime messageClaimedDateTime))
-            {
-                return messageClaimedDateTime.Day == DateTime.Today.Day;
-            }
-            return false;
+            return (Epoch.CurrentRelativeTime(_rewardService.CurrentEpoch.EpochStartDateTime.ToDateTime()) -
+                (claimedDateTime + _staticData.GameData.EconomyStaticData.StandartRewardDayDuration.ToFloat())
+                >= 0);
         }
 
         private void RegisterSaveableEntity() =>
             _mansionFactory.RegisterSaveableEntity((ISaveReader)this);
+
+        private void Unsubscribe()
+        {
+            
+        }
+        private void OnDestroy()
+        {
+            Unsubscribe();
+        }
 
     }
 }

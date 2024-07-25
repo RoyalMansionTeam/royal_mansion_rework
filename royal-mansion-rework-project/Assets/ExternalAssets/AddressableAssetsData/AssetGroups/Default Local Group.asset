@@ -1001,6 +1001,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc1e7fbf53e5a8f4581162b6fa124262
+    m_Address: DailyRewardsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 453dbe2d9d35c4245ab0416fef81f0e0
+    m_Address: RewardPopUpDay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 516a9bf27ab45484986f3052a82b9a3a, type: 2}
   m_SchemaSet:

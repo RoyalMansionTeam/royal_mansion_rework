@@ -16,6 +16,6 @@ namespace RoyalMansion.Code.UnityLogic.Meta
         [SerializeField] public string SequenceID;
         [SerializeField] public List<MetaMessageStaticData> Messages;
         [SerializeField] public bool SequenceRead;
-        [SerializeField] public string ClaimedDateTime;
+        [SerializeField] public int ClaimedDateTime;
     }
 }

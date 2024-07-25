@@ -1,5 +1,6 @@
 ﻿using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.ContextObjects.MansionContext;
+using RoyalMansion.Code.UnityLogic.DailyRewards;
 using RoyalMansion.Code.UnityLogic.Meta;
 using RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic;
 using System;
@@ -15,6 +16,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         [SerializeField] private Kitchen _kitchen;
         [SerializeField] private MansionCinemachineHandler _cinemachineHandler;
         [SerializeField] private DailyMessagesHandler _dailyMessagesHandler;
+        [SerializeField] private DailyRewardService _dailyRewardService;
 
         [Inject]
         public void Construct(ISceneContextService contextService)
@@ -29,6 +31,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
             _contextService.Kitchen = _kitchen;
             _contextService.CinemachineHandler = _cinemachineHandler;
             _contextService.MetaMessagesHandler = _dailyMessagesHandler;
+            _contextService.DailyRewardService = _dailyRewardService;
         }
     }
 }

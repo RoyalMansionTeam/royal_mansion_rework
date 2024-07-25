@@ -1,4 +1,5 @@
-﻿using RoyalMasion.Code.Infrastructure.Data;
+﻿using RoyalMansion.Code.Extensions.Utils;
+using RoyalMasion.Code.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
     [Serializable]
     public class EconomyStaticData
     {
+        [SerializeField] private NormalizedTime _standartRewardDayDuration;
         public List<ValueIconData> ValueIcons;
         public Sprite GetIcon(ResourceType type)
         {
@@ -21,6 +23,7 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
             }
             return icon;
         }
+        public NormalizedTime StandartRewardDayDuration => _standartRewardDayDuration;
     }
 
     [Serializable]

@@ -20,7 +20,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 57ce862620f0b6b4aa22ac406b7acdd2, type: 2}
     - {fileID: 11400000, guid: e02d1c800ef7d304088d97be6239bbfb, type: 2}
     SequenceRead: 0
-    ClaimedDateTime: 
+    ClaimedDateTime: 0
   - SequenceID: Two
     Messages:
     - {fileID: 11400000, guid: c38a32cb39ca75b479725dd6ef4e0fb9, type: 2}
@@ -29,4 +29,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3537eb5966c15e046879b2a32fed08fb, type: 2}
     - {fileID: 11400000, guid: 21d8c718cd4360344b72048bf8319d57, type: 2}
     SequenceRead: 0
-    ClaimedDateTime: 
+    ClaimedDateTime: 0

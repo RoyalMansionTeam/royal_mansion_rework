@@ -25,6 +25,7 @@ namespace RoyalMasion.Code.Infrastructure.DI
         [SerializeField] private GameObject _sceneLoaderPrefab;
         [SerializeField] private GameObject _gameBootstraperPrefab;
         [SerializeField] private GameObject _eventSystemPrefab;
+        [SerializeField] private GameObject _projectTimeTracker;
 
         private IContainerBuilder _containerBuilder;
 
@@ -32,6 +33,7 @@ namespace RoyalMasion.Code.Infrastructure.DI
         private SceneLoader _sceneLoader;
         private GameBootstrapper _gameBootstrapper;
         private CoroutineRunner _coroutineRunner;
+        private ProjectTimeTracker _timeTracker;
 
         public static GameObject Instance;
 
@@ -72,6 +74,7 @@ namespace RoyalMasion.Code.Infrastructure.DI
             _containerBuilder.RegisterInstance<ISceneLoader>(_sceneLoader);
             _containerBuilder.RegisterInstance(_gameBootstrapper);
             _containerBuilder.RegisterInstance<ICoroutineRunner>(_coroutineRunner);
+            _containerBuilder.RegisterInstance(_timeTracker);
         }
 
         private void InstantiateRootObject()
@@ -94,6 +97,10 @@ namespace RoyalMasion.Code.Infrastructure.DI
             GameObject bootstrapperInstance = Instantiate(_gameBootstraperPrefab);
             bootstrapperInstance.transform.SetParent(Instance.transform, false);
             _gameBootstrapper = bootstrapperInstance.GetComponent<GameBootstrapper>();
+
+            GameObject projectTimeTracker = Instantiate(_projectTimeTracker);
+            projectTimeTracker.transform.SetParent(Instance.transform, false);
+            _timeTracker = projectTimeTracker.GetComponent<ProjectTimeTracker>();
 
             GameObject eventSystem = Instantiate(_eventSystemPrefab);
             eventSystem.transform.SetParent(Instance.transform, false);

@@ -21,7 +21,8 @@ namespace RoyalMansion.Code.Extensions.Utils
         }
         public DateTime ToDateTime()
         {
-            return DateTime.Parse(ToDateTimeString());
+            return new DateTime(Year, Month, Day,
+                Time.Houres, Time.Minutes, Time.Seconds, DateTimeKind.Utc);
         }
     }
     

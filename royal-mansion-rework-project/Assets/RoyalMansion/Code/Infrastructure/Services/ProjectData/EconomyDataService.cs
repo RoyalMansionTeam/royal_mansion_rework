@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using RoyalMasion.Code.Infrastructure.Data;
 using System;
 using VContainer;
@@ -65,7 +64,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.ProjectData
                     amount: _resources[dataType]
                 ));
         }
-
     }
 }
 

@@ -25,6 +25,8 @@ MonoBehaviour:
     Window: {fileID: 1047155999365420084, guid: c662a721e1935424796cd564a063d473, type: 3}
   - ID: 5
     Window: {fileID: 7608435653927233672, guid: 82e5b1255bc02444dadb10584d04ec1e, type: 3}
+  - ID: 6
+    Window: {fileID: 7661212661571004308, guid: 52d5c0146b29a954781075fbad902c34, type: 3}
   _mansionStaticData:
     UnitUIConfigs:
     - UIState: 0
@@ -119,6 +121,10 @@ MonoBehaviour:
     DailyMessagesRewardType: 2
     DailyMessagesRewardAmount: 15
   _economyStaticData:
+    _standartRewardDayDuration:
+      Houres: 0
+      Minutes: 0
+      Seconds: 20
     ValueIcons:
     - Type: 2
       Icon: {fileID: 21300000, guid: f383e3a1725a43d44b2c0918a0b65f4b, type: 3}

@@ -10,15 +10,9 @@ namespace RoyalMansion.Code.UnityLogic.DailyRewards
     [CreateAssetMenu(fileName = "DailyRewardsConfig", menuName = "Economy/DailyRewardsConfig")]
     public class DailyRewardsStaticData : ScriptableObject
     {
-        [SerializeField] private List<RewardEpoch> _rewardsEpochs; //All reward epochs of a project
-        [SerializeField] private NormalizedTime _standartRewardDayDuration; //Is applied to all epoch's days
-
-        [SerializeField] private AssetReference _windowReference;
-        [SerializeField] private AssetReference _dayViewReference;
+        [SerializeField] private List<RewardEpoch> _rewardsEpochs;
+ 
         public List<RewardEpoch> RewardsEpochs => _rewardsEpochs;
-        public NormalizedTime StandartRewardDayDuration => _standartRewardDayDuration;
-        public AssetReference WindowReference => _windowReference;
-        public AssetReference DayViewReference => _dayViewReference;
 
 
         /// <summary>
