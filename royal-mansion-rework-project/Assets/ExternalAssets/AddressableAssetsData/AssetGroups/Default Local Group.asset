@@ -1011,6 +1011,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 00ea59b144817754cb2a80c986376f2e
+    m_Address: RecruitmentMessagesConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be0d2297e2cc1cd48aa1e0b63d94820c
+    m_Address: RecruitmentWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c8d0a6e67ec00c408a559d86e35cff3
+    m_Address: Assets/RoyalMansion/Prefabs/UI/MansionUnitUIPrefabs/UnitWarningUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 516a9bf27ab45484986f3052a82b9a3a, type: 2}
   m_SchemaSet:

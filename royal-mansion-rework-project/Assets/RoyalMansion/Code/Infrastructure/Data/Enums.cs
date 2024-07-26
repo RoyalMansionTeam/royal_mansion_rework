@@ -8,7 +8,8 @@ namespace RoyalMasion.Code.Infrastructure.Data
         MansionUnitsUI = 3,
         MansionUnitsUIRoot = 4,
         DailyMessagesPopUp = 5,
-        DailyRewardsPopUp = 6
+        DailyRewardsPopUp = 6,
+        StaffRecruitment = 7
     }
 
     public enum SceneID

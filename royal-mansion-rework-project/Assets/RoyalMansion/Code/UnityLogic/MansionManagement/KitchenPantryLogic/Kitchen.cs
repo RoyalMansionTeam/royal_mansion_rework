@@ -1,7 +1,9 @@
+using RoyalMansion.Code.UI.WorldspaceUI;
 using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.NPC;
 using RoyalMasion.Code.Editor;
 using RoyalMasion.Code.Infrastructure.Data;
+using RoyalMasion.Code.Infrastructure.Services.AssetProvider;
 using RoyalMasion.Code.Infrastructure.Services.ProjectData;
 using RoyalMasion.Code.Infrastructure.Services.SceneContext;
 using RoyalMasion.Code.Infrastructure.Services.StaticData;
@@ -10,6 +12,7 @@ using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.GardenLogic;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine;
 using RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.States;
+using RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,35 +36,44 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
         private INpcFactory _npcFactory;
         private IUIFactory _uiFactory;
         private ISceneContextService _sceneContext;
+        private IAssetProvider _assetProvider;
         private IStaticDataService _staticDataService;
         private IEconomyDataService _economyData;
         
         private WaiterNPC _targetWaiter;
         private CookNPC _targetCook;
         private int _orderResourceCost;
+        private RecruitmentMessagesConfig _recruitmentConfig;
+        private MansionUnitUIHandler _unitUIHandler;
+        private RecruitmentMessageData _cookMessageData;
+
+        public Transform CookSpawnPoint => _cookSpawnPoint;
 
         [Inject]
         public void Construct(INpcFactory npcFactory, IStaticDataService staticDataService,
-            IEconomyDataService economyData, IUIFactory uiFactory, ISceneContextService sceneContext)
+            IEconomyDataService economyData, IUIFactory uiFactory, ISceneContextService sceneContext,
+            IAssetProvider assetProvider)
         {
             _npcFactory = npcFactory;
             _staticDataService = staticDataService;
             _economyData = economyData;
             _uiFactory = uiFactory;
             _sceneContext = sceneContext;
+            _assetProvider = assetProvider;
 
             InitData();
             SpawnStaff();
+            CheckCookAmount();
         }
 
-        private void InitData() => 
+        private void InitData() =>
             _orderResourceCost = _staticDataService.GameData.
             PlaytestStaticData.TestOrderData.OrderResourceCost;
 
         private void Start()
         {
             _isAbleToCook = false;
-            Subscribe();
+            Subscribe();          
         }
 
 
@@ -78,9 +90,44 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
 
         private void HandleTouch()
         {
+            if (_cookNPCs.Count == 0)
+            {
+                _sceneContext.StaffRecruitmentService.SpawnRecruitmentWindow(_cookMessageData);
+                _sceneContext.StaffRecruitmentService.StaffRecruited += TryDespawnKitchenUI;
+                Debug.Log("OpenWindow");
+                return;
+            }
             HandleCollectable();
             HandleOrder();
         }
+        private async void CheckCookAmount()
+        {
+            if (_cookNPCs.Count > 0)
+                return;
+            _recruitmentConfig = await _assetProvider.Load<RecruitmentMessagesConfig>(AssetAddress.RECRUITMENT_MESSAGES_CONFIG);
+            foreach(RecruitmentMessageData message in _recruitmentConfig.MessageDatas)
+            {
+                if (message.Type != NpcType.Cook)
+                    continue;
+                _cookMessageData = message;
+                break;
+            }
+            _unitUIHandler = _uiFactory.CreateUnitUIHandler();
+            _unitUIHandler.SetHandlerData(_cookSpawnPoint.position, _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
+            await _unitUIHandler.SetUIMessenge(InternalUnitStates.Warning);
+            Debug.Log("Placed a warning for kitchen");
+        }
+        private void TryDespawnKitchenUI(NpcType actionTartetType)
+        {
+            if (actionTartetType != NpcType.Cook)
+                return;
+            _sceneContext.StaffRecruitmentService.StaffRecruited -= TryDespawnKitchenUI;
+            _unitUIHandler.gameObject.SetActive(false);
+            OnOrderConditionsChanged();
+        }
+
+        public void AddCook(CookNPC npc) =>
+            _cookNPCs.Add(npc);
 
         public void SendWaiterBack(NpcBase npc) //NOTE: Doesn't work with multiple waiters
         {
@@ -106,13 +153,13 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
                     _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
                 _waiterNPCs.Add(npc);
             }
-            for (int i = 0; i < _staticDataService.GameData.PlaytestStaticData.CookNumber; i++)
+            /*for (int i = 0; i < _staticDataService.GameData.PlaytestStaticData.CookNumber; i++)
             {
                 CookNPC npc = _npcFactory.SpawnNpc<CookNPC>(_cookSpawnPoint);
                 npc.SetNPCData(_uiFactory,
                     _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
                 _cookNPCs.Add(npc);
-            }
+            }*/
 
         }
 
@@ -149,6 +196,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
                     break;
                 }
             }
+            Debug.Log(availableCook & availableWaiter);
             return availableCook & availableWaiter;
         }
 
@@ -157,6 +205,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             _isAbleToCook = state;
             if (state)
                 _targetCook.PlaceUI(InternalUnitStates.KitchenReadyToOrder);
+            
         }
 
 

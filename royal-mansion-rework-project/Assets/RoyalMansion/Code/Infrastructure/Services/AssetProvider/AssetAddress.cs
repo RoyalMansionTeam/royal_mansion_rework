@@ -8,5 +8,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.AssetProvider
         public const string GARDEN_CATALOG_DATA_PATH = "GardenCatalogConfig";
         public const string META_MESSAGES_CONFIG_DATA_PATH = "MetaMessagesConfig";
         public const string DAILY_REWARDS_CONFIG = "DailyRewardsConfig";
+        public const string RECRUITMENT_MESSAGES_CONFIG = "RecruitmentMessagesConfig";
     }
 }

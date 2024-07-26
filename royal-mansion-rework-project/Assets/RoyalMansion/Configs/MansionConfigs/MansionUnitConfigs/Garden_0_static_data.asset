@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0e0c29d944fd749a01a368d46701f2, type: 3}
+  m_Name: Garden_0_static_data
+  m_EditorClassIdentifier: 
+  UnitID: garden_test_0
+  _tasks:
+  - State: 2
+    Time:
+      Houres: 0
+      Minutes: 0
+      Seconds: 30
+    Reward: 3
+    Amount: 15
+  _unitType: 1
+  _unitPrice: 150
+  _basicRequirements:
+  - ItemType: 10
+    Amount: 1

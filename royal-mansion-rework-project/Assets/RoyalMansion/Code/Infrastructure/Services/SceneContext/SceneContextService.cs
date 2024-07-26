@@ -2,7 +2,9 @@ using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.ContextObjects.MansionContext;
 using RoyalMansion.Code.UnityLogic.DailyRewards;
 using RoyalMansion.Code.UnityLogic.Meta;
+using RoyalMasion.Code.UnityLogic.MasionManagement;
 using RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic;
+using RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic;
 using System;
 using System.Collections.Generic;
 
@@ -15,5 +17,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         public MansionCinemachineHandler CinemachineHandler { get; set; }
         public DailyMessagesHandler MetaMessagesHandler { get; set; }
         public DailyRewardService DailyRewardService { get; set; }
+        public StaffRecruitmentService StaffRecruitmentService { get; set; }
     }
 }

@@ -23,7 +23,8 @@ namespace RoyalMasion.Code.Infrastructure.Data
         CleaningTimer = 10,
         KitchenReadyToOrder = 11,
         GuestReadyToOrder = 12,
-        Pantry = 13
+        Pantry = 13,
+        Warning = 14
     }
 
 
@@ -67,5 +68,14 @@ namespace RoyalMasion.Code.Infrastructure.Data
     {
         Resting = 0,
         PerformingTask = 1
+    }
+
+    public enum NpcType
+    {
+        Cook = 0,
+        Waiter = 1,
+        Maid = 2,
+        Butler = 3,
+        Gardner = 4
     }
 }

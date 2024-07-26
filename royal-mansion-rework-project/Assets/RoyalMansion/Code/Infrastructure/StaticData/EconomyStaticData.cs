@@ -10,6 +10,7 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
     public class EconomyStaticData
     {
         [SerializeField] private NormalizedTime _standartRewardDayDuration;
+        public List<RecruitmentPriceData> StaffRecruitmentPrices;
         public List<ValueIconData> ValueIcons;
         public Sprite GetIcon(ResourceType type)
         {
@@ -23,7 +24,26 @@ namespace RoyalMasion.Code.Infrastructure.StaticData
             }
             return icon;
         }
+        public RecruitmentPriceData GetRecruitmentPrice(NpcType staffType)
+        {
+            RecruitmentPriceData data = null;
+            foreach(var priceData in StaffRecruitmentPrices)
+            {
+                if (priceData.StaffType != staffType)
+                    continue;
+                data = priceData;
+                break;
+            }
+            return data;
+        }
         public NormalizedTime StandartRewardDayDuration => _standartRewardDayDuration;
+    }
+    [Serializable]
+    public class RecruitmentPriceData
+    {
+        public NpcType StaffType;
+        public ResourceType ValueType;
+        public int Amount;
     }
 
     [Serializable]
