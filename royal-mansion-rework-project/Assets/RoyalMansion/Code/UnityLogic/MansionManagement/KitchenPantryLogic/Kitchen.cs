@@ -123,7 +123,6 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             _unitUIHandler = _uiFactory.CreateUnitUIHandler();
             _unitUIHandler.SetHandlerData(_cookSpawnPoint.position, _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
             await _unitUIHandler.SetUIMessenge(InternalUnitStates.Warning);
-            Debug.Log("Placed a warning for kitchen");
         }
         private void TryDespawnKitchenUI(NpcType actionTartetType)
         {
@@ -140,7 +139,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.KitchenGardenLogic
             _cookNPCs.Add(npc);
         }
 
-        public void SendWaiterBack(NpcBase npc) //NOTE: Doesn't work with multiple waiters
+        public void SendWaiterBack(NpcBase npc) 
         {
             if (npc.AssignedUnitID != "Waiter")
                 return;

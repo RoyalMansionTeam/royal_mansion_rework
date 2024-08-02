@@ -16,6 +16,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         private ISceneContextService _contextService;
         [SerializeField] private MansionSpawnPointData _mansionSpawnPoints;
         [SerializeField] private Kitchen _kitchen;
+        [SerializeField] private MaidService _maidService;
         [SerializeField] private MansionCinemachineHandler _cinemachineHandler;
         [SerializeField] private DailyMessagesHandler _dailyMessagesHandler;
         [SerializeField] private DailyRewardService _dailyRewardService;
@@ -32,6 +33,7 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         {
             _contextService.MansionSpawnPoints = _mansionSpawnPoints;
             _contextService.Kitchen = _kitchen;
+            _contextService.MaidService = _maidService;
             _contextService.CinemachineHandler = _cinemachineHandler;
             _contextService.MetaMessagesHandler = _dailyMessagesHandler;
             _contextService.DailyRewardService = _dailyRewardService;

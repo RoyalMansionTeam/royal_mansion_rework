@@ -18,5 +18,6 @@ namespace RoyalMasion.Code.Infrastructure.Services.SceneContext
         public DailyMessagesHandler MetaMessagesHandler { get; set; }
         public DailyRewardService DailyRewardService { get; set; }
         public StaffRecruitmentService StaffRecruitmentService { get; set; }
+        public MaidService MaidService { get; set; }
     }
 }

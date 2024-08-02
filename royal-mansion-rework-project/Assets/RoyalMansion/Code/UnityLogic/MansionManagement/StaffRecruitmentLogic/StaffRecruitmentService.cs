@@ -46,10 +46,16 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
             switch(staffType)
             {
                 case NpcType.Cook:
-                    CookNPC npc = _npcFactory.SpawnNpc<CookNPC>(_sceneContext.Kitchen.CookSpawnPoint);
-                    npc.SetNPCData(_uiFactory,
+                    CookNPC cookNpc = _npcFactory.SpawnNpc<CookNPC>(_sceneContext.Kitchen.CookSpawnPoint);
+                    cookNpc.SetNPCData(_uiFactory,
                         _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
-                    _sceneContext.Kitchen.AddCook(npc);
+                    _sceneContext.Kitchen.AddCook(cookNpc);
+                    break;
+                case NpcType.Maid:
+                    MaidNPC maidNpc = _npcFactory.SpawnNpc<MaidNPC>(_sceneContext.MansionSpawnPoints.GuestSpawnPoint);
+                    maidNpc.SetNPCData(_uiFactory,
+                        _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
+                    _sceneContext.MaidService.AddMaid(maidNpc);
                     break;
             }
             StaffRecruited?.Invoke(staffType);

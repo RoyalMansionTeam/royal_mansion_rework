@@ -12,6 +12,7 @@ namespace RoyalMansion.Code.UnityLogic.NPC
         [SerializeField] private List<GameObject> _guestPrefabs;
         [SerializeField] private List<GameObject> _waiterPrefabs;
         [SerializeField] private List<GameObject> _cookPrefabs;
+        [SerializeField] private List<GameObject> _maidPrefabs;
 
         private Dictionary<Type, List<GameObject>> _prefabs;
 
@@ -23,7 +24,8 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             {
                 [typeof(GuestNPC)] = _guestPrefabs,
                 [typeof(WaiterNPC)] = _waiterPrefabs,
-                [typeof(CookNPC)] = _cookPrefabs
+                [typeof(CookNPC)] = _cookPrefabs,
+                [typeof(MaidNPC)] = _maidPrefabs,
             };
         }
 

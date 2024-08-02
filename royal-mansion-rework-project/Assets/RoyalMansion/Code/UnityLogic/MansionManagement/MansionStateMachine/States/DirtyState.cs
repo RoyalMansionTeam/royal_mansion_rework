@@ -1,4 +1,5 @@
 ﻿using RoyalMansion.Code.Extensions.Utils;
+using RoyalMansion.Code.UnityLogic.NPC;
 using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.UnityLogic.MasionManagement.ApartmentLogic;
 using System;
@@ -12,6 +13,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private MansionStateMachineData _stateMachineData;
         private Timer _timer;
         private UnitTaskData _stateRewardData;
+        private MaidNPC _assignedMaid;
 
         public void SetupStateMachine(IMansionStateMachine gameStateMachine)
         {
@@ -33,10 +35,29 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
 
         public void Stay()
         {
+            if (_assignedMaid == null)
+            {
+                TryGetMaid();
+                return;
+            }
             if (_timer != null)
                 Debug.Log("Offer to boost timer");
+        }
+        private void TryGetMaid()
+        {
+            _assignedMaid = _stateMachineData.SceneContext.MaidService.TryAssignMaid
+                (_stateMachineData.NavMeshTarget);
+            if (_assignedMaid == null)
+                _stateMachineData.SceneContext.MaidService.AvailableMaidFound +=
+                    OnMaidFound;
             else
-                SpawnTimer();
+                OnMaidFound(_assignedMaid);
+        }
+
+        private void OnMaidFound(MaidNPC maid)
+        {
+            _assignedMaid = maid;
+            _assignedMaid.UnitAchived += SpawnTimer;
         }
 
         private async void SpawnTimer()
@@ -49,12 +70,16 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         }
         private void OnTimerDone()
         {
-            
+            _stateMachineData.SceneContext.MaidService.SendMaidBack(_assignedMaid);
             _mansionStateMachine.Enter<EmptyState>();
         }
 
         public void Exit()
         {
+            _stateMachineData.SceneContext.MaidService.AvailableMaidFound -=
+                OnMaidFound;
+            _assignedMaid.UnitAchived -= SpawnTimer;
+            _assignedMaid = null;
             _timer.Despawn();
             _timer = null;
         }

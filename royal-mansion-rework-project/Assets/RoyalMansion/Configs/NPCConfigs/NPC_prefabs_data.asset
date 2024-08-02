@@ -18,3 +18,5 @@ MonoBehaviour:
   - {fileID: 6245492615533650368, guid: 404f39083dc35c740a9f7fb3a7f9a9dc, type: 3}
   _cookPrefabs:
   - {fileID: 6245492615533650368, guid: 4a7cb0274b798c047a6be2f86827040b, type: 3}
+  _maidPrefabs:
+  - {fileID: 6245492615533650368, guid: 472dca1a436b31147b496a8bc89f104e, type: 3}
