@@ -2,6 +2,7 @@
 using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.NPC.NpcBehaviour;
 using RoyalMasion.Code.Infrastructure.Data;
+using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
 using RoyalMasion.Code.Infrastructure.Services.UIFactory;
 using System;
 using UnityEngine;
@@ -12,12 +13,13 @@ namespace RoyalMansion.Code.UnityLogic.NPC
     {
         public Action UnitAchived;
 
-        private Transform _destination;
+        private Vector3 _destination;
         private IUIFactory _uiFactory;
         private MansionUnitUIHandler _uiHandler;
 
         public void SetNPCData(IUIFactory uiFactory, DraggableCamera cameraController)
         {
+            State = (int)NpcState.Resting;
             AssignedUnitID = "Waiter";
             EnterBehaviour(new BasicMovingBehaviour(
                 agent: _agent,
@@ -29,11 +31,20 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             _uiHandler.SetHandlerData(transform.position, cameraController);*/
         }
 
-        public void SetTarget(Transform destination) =>
+        public void SetTarget(Vector3 destination)
+        {
+            TargetPosition = destination;
             _destination = destination;
+        }
 
         public void EnterMaidBehaviour(NpcState state)
         {
+            State = (int)state;
+            if (state == NpcState.Resting)
+            {
+                TargetUnitID = null;
+            }
+
             EnterBehaviour(new BasicMovingBehaviour(
                 agent: _agent,
                 target: _destination,
@@ -45,5 +56,6 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             //SpawnUI();
             UnitAchived?.Invoke();
         }
+
     }
 }

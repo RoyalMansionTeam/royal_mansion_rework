@@ -1,6 +1,10 @@
-﻿using RoyalMansion.Code.UnityLogic.NPC;
+﻿using RoyalMansion.Code.UnityLogic.CameraLogic;
+using RoyalMansion.Code.UnityLogic.NPC;
+using RoyalMasion.Code.Extensions;
 using RoyalMasion.Code.Infrastructure.Data;
+using RoyalMasion.Code.Infrastructure.Saving;
 using RoyalMasion.Code.Infrastructure.Services.AssetProvider;
+using RoyalMasion.Code.Infrastructure.Services.SaveLoadService;
 using RoyalMasion.Code.Infrastructure.Services.SceneContext;
 using RoyalMasion.Code.Infrastructure.Services.UIFactory;
 using System;
@@ -11,13 +15,18 @@ using VContainer;
 
 namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
 {
-    public class MaidService : MonoBehaviour
+    public class MaidService : MonoBehaviour, ISaveReader
     {
+        private const string Unit_Name = "MaidService";
+
         [SerializeField] private Transform _maidRestRoom;
         public Action<MaidNPC> AvailableMaidFound;
 
         private IAssetProvider _assetProvider;
         private ISceneContextService _sceneContext;
+        private INpcFactory _npcFactory;
+        private IUIFactory _uiFactory;
+        private IMansionFactory _mansionFactory;
 
         private RecruitmentMessagesConfig _recruitmentConfig;
         private RecruitmentMessageData _maidMessageData;
@@ -26,10 +35,42 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
         private Transform _lastCalledRoomPosition;
 
         [Inject]
-        public void Construct(IAssetProvider assetProvider, ISceneContextService sceneContext)
+        public void Construct(IAssetProvider assetProvider, ISceneContextService sceneContext,
+            INpcFactory npcFactory, IUIFactory uIFactory, IMansionFactory mansionFactory)
         {
             _assetProvider = assetProvider;
             _sceneContext = sceneContext;
+            _npcFactory = npcFactory;
+            _uiFactory = uIFactory;
+            _mansionFactory = mansionFactory;
+            RegisterSaveableEntity();
+        }
+        public void LoadProgress(GameProgress progress)
+        {
+            if (progress == null || progress.MansionProgress.NpcSaveData == null)
+                return;
+            foreach (NpcSaveData saveData in progress.MansionProgress.NpcSaveData)
+            {
+                if (saveData.AssignedUnitID != Unit_Name)
+                    continue;
+                MaidNPC npc;
+                if (saveData.State == (int)NpcState.Resting)
+                    npc = _npcFactory.SpawnNpc<MaidNPC>(_maidRestRoom);
+                else
+                    npc = _npcFactory.SpawnNpc<MaidNPC>(saveData.TargetPosition.AsUnityVector());
+                npc.SetNPCData(_uiFactory,
+                    _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
+                npc.TargetUnitID = saveData.TargetUnitID;
+                npc.TargetPosition = saveData.TargetPosition.AsUnityVector();
+                npc.State = saveData.State;
+                npc.SaveableID = saveData.UniqueSaveID;
+                AddMaid(npc);
+                npc.SetTarget(npc.TargetPosition);
+                if (npc.State == (int)NpcState.PerformingTask)
+                {
+                    AvailableMaidFound?.Invoke(npc);
+                }
+            }
         }
 
         private void Start()
@@ -39,11 +80,11 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
 
         public void AddMaid(MaidNPC npc)
         {
-            npc.AssignedUnitID = "MaidService";
+            npc.AssignedUnitID = Unit_Name;
             _maids.Add(npc);
         }
 
-        public MaidNPC TryAssignMaid(Transform targetUnitPosition)
+        public MaidNPC TryAssignMaid(Transform targetUnitPosition, string targetUnitID)
         {
             _lastCalledRoomPosition = targetUnitPosition;
             MaidNPC accessableMaid = null;
@@ -51,6 +92,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
             {
                 FindAvailableNPC(NpcType.Maid);
                 accessableMaid = _targetMaid;
+                accessableMaid.TargetUnitID = targetUnitID;
             }
             else
                 PlaceRecruitmentWindow();
@@ -59,16 +101,33 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
 
         public void OnNpcTargetAchieved(NpcBase npc)
         {
-            if (npc.AssignedUnitID != "MaidService")
+            if (npc.AssignedUnitID != Unit_Name)
                 return;
             npc.gameObject.GetComponent<MaidNPC>().OnTargetAchieved();
         }
 
         public void SendMaidBack(MaidNPC targetMaid)
         {
-            targetMaid.SetTarget(_maidRestRoom);
+            targetMaid.SetTarget(_maidRestRoom.position);
             targetMaid.EnterMaidBehaviour(NpcState.Resting);
         }
+
+        /*public MaidNPC TryFindAssignedMaid(string unitID)
+        {
+            Debug.Log(_maids.Count);
+            if (_maids.Count == 0)
+                return null;
+            MaidNPC assignedMaid = null;
+            foreach (MaidNPC maid in _maids)
+            {
+                Debug.Log(maid.TargetUnitID);
+                if (maid.TargetUnitID != unitID)
+                    continue;
+                assignedMaid = maid;
+                break;
+            }
+            return assignedMaid;
+        }*/
 
         private void PlaceRecruitmentWindow()
         {
@@ -96,7 +155,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
         }
         private void SetMaidTask(MaidNPC maid)
         {
-            maid.SetTarget(_lastCalledRoomPosition);
+            maid.SetTarget(_lastCalledRoomPosition.position);
             maid.EnterMaidBehaviour(NpcState.PerformingTask);
         }
 
@@ -113,6 +172,9 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
                 break;
             }
         }
+
+        private void RegisterSaveableEntity() =>
+            _mansionFactory.RegisterSaveableEntity(this);
 
     }
 }

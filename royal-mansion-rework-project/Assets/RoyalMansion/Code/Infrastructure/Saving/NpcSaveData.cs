@@ -7,12 +7,18 @@ namespace RoyalMasion.Code.Infrastructure.Saving
     {
         public Vector3Data Position;
         public string AssignedUnitID;
+        public int State;
+        public Vector3Data TargetPosition;
+        public string TargetUnitID;
 
-        public NpcSaveData(string uniqueSaveID, Vector3Data position, string assignedUnitID)
+        public NpcSaveData(string uniqueSaveID, Vector3Data position, string assignedUnitID, int state, Vector3Data targetPosition, string targetUnitID)
         {
             UniqueSaveID = uniqueSaveID;
             Position = position;
             AssignedUnitID = assignedUnitID;
+            State = state;
+            TargetPosition = targetPosition;
+            TargetUnitID = targetUnitID;
         }
 
     }

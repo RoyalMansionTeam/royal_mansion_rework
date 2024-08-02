@@ -27,6 +27,8 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
             _stateRewardData = _stateMachineData.UnitData.GetTaskData
                 (_mansionStateMachine.GetUnitStateEnum(GetType()));
             SetUI();
+            _stateMachineData.SceneContext.MaidService.AvailableMaidFound +=
+                    OnMaidFound;
         }
 
         private async void SetUI() =>
@@ -46,22 +48,32 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.MansionStateMachine.State
         private void TryGetMaid()
         {
             _assignedMaid = _stateMachineData.SceneContext.MaidService.TryAssignMaid
-                (_stateMachineData.NavMeshTarget);
+                (_stateMachineData.NavMeshTarget, _stateMachineData.UnitData.UnitID);
             if (_assignedMaid == null)
                 _stateMachineData.SceneContext.MaidService.AvailableMaidFound +=
                     OnMaidFound;
             else
+            {
+                _stateMachineData.SceneContext.MaidService.AvailableMaidFound -=
+                    OnMaidFound;
                 OnMaidFound(_assignedMaid);
+            }
+
         }
 
         private void OnMaidFound(MaidNPC maid)
         {
+            /*if (maid.AssignedUnitID != _stateMachineData.UnitData.UnitID)
+                return;*/
+            if (_assignedMaid != null)
+                return;
             _assignedMaid = maid;
             _assignedMaid.UnitAchived += SpawnTimer;
         }
 
         private async void SpawnTimer()
         {
+            Debug.Log("SpawnTimer");
             _timer = await _stateMachineData.UnitUIHandler.SetUnitTimer(InternalUnitStates.CleaningTimer);
             _timer.InitTimer(
                 taskTime: _stateRewardData.Time.ToFloat(),

@@ -17,6 +17,9 @@ namespace RoyalMansion.Code.UnityLogic.NPC
         [SerializeField] protected NavMeshAgent _agent;
         public string AssignedUnitID;
         public bool FinishedTask = false;
+        public int State;
+        public Vector3 TargetPosition = Vector3.zero;
+        public string TargetUnitID;
 
 
         private INpcBehaviour _currentBehavior;
@@ -55,7 +58,10 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             progress.MansionProgress.TryAddNpc(new NpcSaveData(
                 uniqueSaveID: SaveableID,
                 position: transform.localPosition.AsVectorData(),
-                assignedUnitID: AssignedUnitID
+                assignedUnitID: AssignedUnitID,
+                state: State,
+                targetPosition: TargetPosition.AsVectorData(),
+                targetUnitID: TargetUnitID
                 ));
         }
 

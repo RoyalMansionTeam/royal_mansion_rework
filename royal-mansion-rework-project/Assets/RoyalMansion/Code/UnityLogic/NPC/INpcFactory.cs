@@ -10,5 +10,6 @@ namespace RoyalMansion.Code.UnityLogic.NPC
         TNpc SpawnNpc<TNpc>(Transform at) where TNpc : NpcBase;
         Task SetNpcFactory();
         void Clear();
+        TNpc SpawnNpc<TNpc>(Vector3 at) where TNpc : NpcBase;
     }
 }

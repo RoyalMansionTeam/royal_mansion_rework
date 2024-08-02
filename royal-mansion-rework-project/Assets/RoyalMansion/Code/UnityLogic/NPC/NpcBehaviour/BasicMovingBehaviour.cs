@@ -10,6 +10,7 @@ namespace RoyalMansion.Code.UnityLogic.NPC.NpcBehaviour
     {
         private readonly NavMeshAgent _agent;
         private readonly Transform _target;
+        private readonly Vector3 _targetV3;
         private readonly NpcState _state;
 
         public NpcState State => _state;
@@ -19,12 +20,21 @@ namespace RoyalMansion.Code.UnityLogic.NPC.NpcBehaviour
             _target = target;
             _state = state;
         }
+        public BasicMovingBehaviour(NavMeshAgent agent, Vector3 target, NpcState state)
+        {
+            _agent = agent;
+            _targetV3 = target;
+            _state = state;
+        }
 
 
         public void Enter()
         {
             _agent.isStopped = false;
-            _agent.SetDestination(_target.position);
+            if (_target != null)
+                _agent.SetDestination(_target.position);
+            else
+                _agent.SetDestination(_targetV3);
         }
         public void Exit()
         {

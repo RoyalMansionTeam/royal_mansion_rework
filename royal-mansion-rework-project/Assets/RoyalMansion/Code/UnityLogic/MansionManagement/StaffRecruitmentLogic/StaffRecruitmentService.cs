@@ -1,6 +1,7 @@
 ﻿using RoyalMansion.Code.UI.WorldspaceUI;
 using RoyalMansion.Code.UnityLogic.CameraLogic;
 using RoyalMansion.Code.UnityLogic.NPC;
+using RoyalMasion.Code.Extensions.Utils;
 using RoyalMasion.Code.Infrastructure.Data;
 using RoyalMasion.Code.Infrastructure.Services.SceneContext;
 using RoyalMasion.Code.Infrastructure.Services.StaticData;
@@ -56,6 +57,7 @@ namespace RoyalMasion.Code.UnityLogic.MasionManagement.StaffRecruitmentLogic
                     maidNpc.SetNPCData(_uiFactory,
                         _sceneContext.CinemachineHandler.MainCamera.GetComponent<DraggableCamera>());
                     _sceneContext.MaidService.AddMaid(maidNpc);
+                    maidNpc.SaveableID = maidNpc.GetComponent<UniqueId>().GenerateId();
                     break;
             }
             StaffRecruited?.Invoke(staffType);

@@ -62,6 +62,18 @@ namespace RoyalMansion.Code.UnityLogic.NPC
             return npcComponent;
         }
 
+        public TNpc SpawnNpc<TNpc>(Vector3 at) where TNpc : NpcBase
+        {
+            GameObject instance = UnityEngine.Object.Instantiate(_prefabs[typeof(TNpc)]
+                [UnityEngine.Random.Range(0, _prefabs[typeof(TNpc)].Count - 1)],
+                _sceneContext.MansionSpawnPoints.GuestSpawnPoint);
+            instance.transform.position = at;
+            TNpc npcComponent = instance.GetComponent<TNpc>();
+            npcComponent.SetProgress(_progressService);
+            _mansionFactory.RegisterSaveableEntity(npcComponent);
+            return npcComponent;
+        }
+
         public void Clear() 
         {
             _prefabs.Clear();
